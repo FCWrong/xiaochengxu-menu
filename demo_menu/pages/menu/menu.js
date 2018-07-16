@@ -9,7 +9,7 @@ Page({
     categoryURL: "https://apis.juhe.cn/cook/category.php",
     indexURL: "https://apis.juhe.cn/cook/index.php",
     queryidURL:"https://apis.juhe.cn/cook/queryid.php",
-    key:"f0648645e9ce62e65c0308c4ef2d0ad9"
+    key:"f0648645e9ce62e65c0308c4ef2d0ad9",
   },
 
   /**

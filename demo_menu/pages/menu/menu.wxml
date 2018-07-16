@@ -1,2 +1,22 @@
 <!--pages/menu/menu.wxml-->
-<text>pages/menu/menu.wxml</text>
+<view class='page-discovery'>
+  <navigator url='/pages/search/search' hover-class='none'>
+    <view class='search-bar'>
+      <view class='search-radius'>
+        <icon type='search' size='14'></icon>
+        <text>想吃什么</text>
+      </view>
+    </view>
+  </navigator>
+</view>
+<view calss="layers-title-view">
+  <text class='layers-title'>热门搜索</text>
+</view>
+<view class='container'>
+  <view class='row'></view>
+  <label class='item'>haha</label>
+  <label class='item'>haha</label>
+  <label class='item'>haha</label>
+</view>
+
+
