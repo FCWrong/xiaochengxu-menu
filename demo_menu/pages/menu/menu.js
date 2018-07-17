@@ -10,6 +10,7 @@ Page({
     indexURL: "https://apis.juhe.cn/cook/index.php",
     queryidURL:"https://apis.juhe.cn/cook/queryid.php",
     key:"f0648645e9ce62e65c0308c4ef2d0ad9",
+    menuData: []
   },
 
   /**
@@ -18,9 +19,12 @@ Page({
   onLoad: function (options) {
     // this.getCategory();  
     // this.getQuery("鱼"); 
+    this.getCategory()
   },
   //按菜谱id查看详细
   getQueryid: function (id) {
+
+  
     wx.request({
       url: this.data.queryidURL,
       data: {
@@ -66,12 +70,14 @@ Page({
         "content-type": "application/json"
       },
       success: function (res) {
+        // var obj=res.data.
         console.log(res.data);
       }
     })
   },
   //分类标签列表
   getCategory: function () {
+    var that = this;
     wx.request({
       url: this.data.categoryURL,
       data: {
@@ -81,7 +87,16 @@ Page({
         "content-type": "application/json"
       },
       success: function (res) {
-        console.log(res.data);
+        that.data.menuData=res.data.result;
+        // for(var i=0;i<4;i++)
+        // {
+        //   that.data.menuData.push(res.data.result[i]);
+        // }
+        that.setData({
+          menuData: that.data.menuData
+        })
+        
+        console.log(that.data.menuData);
       }
     })
   },
@@ -89,7 +104,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
 
   /**
