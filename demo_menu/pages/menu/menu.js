@@ -10,7 +10,17 @@ Page({
     indexURL: "https://apis.juhe.cn/cook/index.php",
     queryidURL:"https://apis.juhe.cn/cook/queryid.php",
     key:"f0648645e9ce62e65c0308c4ef2d0ad9",
-    menuData: []
+    menuData: [],
+    menuItems:[
+      {
+        ablums: "http://img.juhe.cn/cookbook/t/0/45_854851.jpg",
+        title:"秘制红烧肉 "
+      },
+      {
+        ablums: "http://img.juhe.cn/cookbook/t/1/52_759155.jpg",
+        title: "经典红烧肉"
+      }
+    ]
   },
 
   /**
@@ -19,7 +29,7 @@ Page({
   onLoad: function (options) {
     // this.getCategory();  
     // this.getQuery("鱼"); 
-    this.getCategory()
+    // this.getCategory()
   },
   //按菜谱id查看详细
   getQueryid: function (id) {

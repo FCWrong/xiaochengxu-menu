@@ -9,26 +9,78 @@
     </view>
   </navigator>
 </view>
-<view calss="view-temp">
+<!-- 热门分类 -->
+<view>
   <view calss="layers-title-view">
     <text class='layers-title'>热门分类</text>
+    <view class='Grid'>
+      <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index<4}}">
+        {{item.name}}
+      </label>
+    </view>
+    <view class='Grid'>
+      <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index>=4&&index<8}}">
+        {{item.name}}
+      </label>
+    </view>
+    <view class='Grid'>
+      <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index>=8&&index<12}}">
+        {{item.name}}
+      </label>
+    </view>
   </view>
-  <view class='Grid'>
-    <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index<4}}">
-      {{item.name}}
-    </label>
-  </view>
-  <view class='Grid'>
-    <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index>=4&&index<8}}">
-      {{item.name}}
-    </label>
-  </view>
-  <view class='Grid'>
-    <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index>=8&&index<12}}">
-      {{item.name}}
-    </label>
-  </view>
+ 
 </view>
+<!-- 精品好菜 -->
+  <view calss="layers-title-view">
+    <text class='layers-title'>精品好菜</text>
+  </view>
+<!-- 
+  <template name="menu-item">
+      <view class='upload_Item'>
+        <image src="{{item.ablums}}" calss="upload_Item_img"></image>
+        <label class="layers-title">{{item.title}}</label>
+      </view>
+  </template>
+
+<view  class='uploadWrap'>
+  <view wx:for="{{menuItems}}" class="upload_Item">
+    <template is="menu-item" data="{{item}}"></template>  
+  </view> 
+</view> -->
+   
+
+   <!-- <scroll-view scroll-x="true">  -->
+     <!-- <view class="Grid">  
+ <view class="upload_Item"> 
+  <image class="upload_Item_img" src="{{menuItems[0].ablums}}" mode="aspectFill"></image> 
+  <label>asas</label>
+ </view> 
+  <view class="upload_Item"> 
+  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
+ </view> 
+  <view class="upload_Item"> 
+  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
+ </view> 
+  <view class="upload_Item"> 
+  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
+ </view> 
+  <view class="upload_Item"> 
+  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
+ </view> 
+  <view class="upload_Item"> 
+  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
+ </view> 
+</view>      -->
+<!-- </scroll-view>   -->
+ <view class="Item-grid">
+  <view  wx:for="{{menuItems}}"   class="Item-item">
+    <view>
+      <image class="Item_img" src="{{item.ablums}}" mode="aspectFill"></image> 
+      <label class="Item-text">{{item.title}}</label>
+    </view>    
+  </view>
+</view> 
 
 
 
