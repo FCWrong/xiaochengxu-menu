@@ -19,6 +19,10 @@ Page({
       {
         ablums: "http://img.juhe.cn/cookbook/t/1/52_759155.jpg",
         title: "经典红烧肉"
+      }, 
+      {
+        ablums: "http://img.juhe.cn/cookbook/t/1/52_759155.jpg",
+        title: "经典红烧肉"
       }
     ]
   },
