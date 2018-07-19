@@ -1,0 +1,32 @@
+<!--pages/info/info.wxml-->
+<view class='info-title'>
+  <image class='info-title-image' src='{{menuInfo.albums[0]}}' mode='aspectFill'></image>
+  <label class='info-title-text'>{{menuInfo.title}}</label>
+</view>
+
+<view class='info-yongliao'>
+  <view class='info-yongliao-title'>养生必读</view>
+  <view class='info-yongliao-des'>{{menuInfo.imtro}}</view>
+  <view class='info-yongliao-title'>用料</view>
+  <view class='info-yongliao-list'>  
+    <view class='info-yongliao-item'>
+      <view wx:for="{{menuInfo.peiliaos}}">
+        <view class='info-yongliao-item-xian'></view>
+        <view class='info-yongliao-item-item'>
+          <label class="info-yongliao-item-name">{{item[0]}}</label>
+          <label class="info-yongliao-item-count">{{item[1]}}</label>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='info-yongliao-title'>做法</view>
+  <view class='info-yongliao-step-list'>
+    <view class='info-yongliao-step'>
+      <view wx:for="{{menuInfo.steps}}">
+        <view class='info-yongliao-step-label'>{{item.step}}</view>
+        <image class='info-yongliao-step-image' src="{{item.img}}" mode='aspectFill'></image>
+      </view>
+    </view>
+  </view>
+</view>
+

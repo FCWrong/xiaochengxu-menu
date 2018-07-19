@@ -39,7 +39,7 @@
 }
 
 /*1/3平分*/
-.Grid-Gridcell {
+.Grid-cell {
   flex: 1;
   height: 30px;
   line-height: 30px;
@@ -54,7 +54,8 @@
 .Item-grid {
   display: flex;
   flex-flow:warp;
+  flex-wrap: wrap;
 }
-.Item-item{height: 400rpx; flex: 1;text-align: center;margin: 4px 4px;background-size:100%,400rpx;background-color: #efefef; } 
+.Item-item{width:46%;height: 400rpx;text-align: center;margin: 2% 2%;background-size:100%,400rpx;background-color: #efefef; } 
  .Item_img{width: 100%; height: 300rpx;} 
- .Item-text{font-size: .7em; color:#888;height: 80rpx;} 
+ .Item-text{font-size: .7em; color:#000;height: 80rpx;} 

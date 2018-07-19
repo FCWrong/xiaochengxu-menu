@@ -11,29 +11,16 @@ Page({
     queryidURL:"https://apis.juhe.cn/cook/queryid.php",
     key:"f0648645e9ce62e65c0308c4ef2d0ad9",
     menuData: [],
-    menuItems:[
-      {
-        ablums: "http://img.juhe.cn/cookbook/t/0/45_854851.jpg",
-        title:"秘制红烧肉 "
-      },
-      {
-        ablums: "http://img.juhe.cn/cookbook/t/1/52_759155.jpg",
-        title: "经典红烧肉"
-      }, 
-      {
-        ablums: "http://img.juhe.cn/cookbook/t/1/52_759155.jpg",
-        title: "经典红烧肉"
-      }
-    ]
+    menuItems:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.getCategory();  
-    // this.getQuery("鱼"); 
-    // this.getCategory()
+    this.getCategory();  
+    this.getQuery("鱼"); 
+    // this.getQueryid(100);
   },
   //按菜谱id查看详细
   getQueryid: function (id) {
@@ -42,8 +29,8 @@ Page({
     wx.request({
       url: this.data.queryidURL,
       data: {
-        "key": this.key,
-        "id": id
+        // "key": this.key,
+        // "id": id
       },
       header: {
         "content-type": "application/json"
@@ -73,6 +60,7 @@ Page({
   //菜谱大全
   getQuery:function(name)
   {
+    var that=this;
     wx.request({
       url: this.data.queryUrl,
       data: {
@@ -84,8 +72,19 @@ Page({
         "content-type": "application/json"
       },
       success: function (res) {
-        // var obj=res.data.
+        
         console.log(res.data);
+        var menuList=[];
+        var menuData=res.data.result.data;
+        for (var i = 0; i < menuData.length;i++)
+        {
+          var obj = menuData[i];
+          obj.albums[0] = obj.albums[0].replace('\\', '');
+          menuList.push(obj);
+        }
+        that.setData({
+          menuItems: menuList
+        })
       }
     })
   },
@@ -102,16 +101,17 @@ Page({
       },
       success: function (res) {
         that.data.menuData=res.data.result;
-        // for(var i=0;i<4;i++)
-        // {
-        //   that.data.menuData.push(res.data.result[i]);
-        // }
         that.setData({
           menuData: that.data.menuData
         })
-        
-        console.log(that.data.menuData);
       }
+    })
+  },
+
+  tapItem:function(e){
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '../info/info?id='+id,
     })
   },
   /**

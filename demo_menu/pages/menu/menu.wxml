@@ -3,7 +3,7 @@
   <navigator url='/pages/search/search' hover-class='none'>
     <view class='search-bar'>
       <view class='search-radius'>
-        <icon type='search' size='14'></icon>
+        <icon type='search' size='14' marge=""></icon>
         <text>想吃什么</text>
       </view>
     </view>
@@ -35,48 +35,10 @@
   <view calss="layers-title-view">
     <text class='layers-title'>精品好菜</text>
   </view>
-<!-- 
-  <template name="menu-item">
-      <view class='upload_Item'>
-        <image src="{{item.ablums}}" calss="upload_Item_img"></image>
-        <label class="layers-title">{{item.title}}</label>
-      </view>
-  </template>
-
-<view  class='uploadWrap'>
-  <view wx:for="{{menuItems}}" class="upload_Item">
-    <template is="menu-item" data="{{item}}"></template>  
-  </view> 
-</view> -->
-   
-
-   <!-- <scroll-view scroll-x="true">  -->
-     <!-- <view class="Grid">  
- <view class="upload_Item"> 
-  <image class="upload_Item_img" src="{{menuItems[0].ablums}}" mode="aspectFill"></image> 
-  <label>asas</label>
- </view> 
-  <view class="upload_Item"> 
-  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
- </view> 
-  <view class="upload_Item"> 
-  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
- </view> 
-  <view class="upload_Item"> 
-  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
- </view> 
-  <view class="upload_Item"> 
-  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
- </view> 
-  <view class="upload_Item"> 
-  <image class="upload_Item_img" src="{{menuItems[0].ablums}}"></image> 
- </view> 
-</view>      -->
-<!-- </scroll-view>   -->
  <view class="Item-grid">
   <view  wx:for="{{menuItems}}"   class="Item-item">
-    <view>
-      <image class="Item_img" src="{{item.ablums}}" mode="aspectFill"></image> 
+    <view bindtap='tapItem' id='{{item.id}}'>
+      <image class="Item_img" src="{{item.albums[0]}}" mode="aspectFill"></image> 
       <label class="Item-text">{{item.title}}</label>
     </view>    
   </view>

@@ -1,0 +1,47 @@
+/* pages/search/search.wxss */
+@import '../menu/menu';
+
+.search-bar .search-radius2 {
+  background-color: #fff;
+  border-radius: 1em;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: .8em;
+  color: #888;
+  padding: .3em 0;
+}
+.search-icon{
+ margin-left:20rpx;
+}
+.search-input{
+ margin-left:20rpx;
+ margin-right:20rpx;
+ width: 100%;
+}
+
+/* flex布局 */
+.Grid2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*1/3平分*/
+.Grid-cell2 {
+  /* flex: 1; */
+  width: 22%;
+  height: 30px;
+  line-height: 30px;
+  background-color: #efefef;
+  text-align: center;
+  margin: 1.5% 1.5%;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.clear{
+   margin-right: 30rpx; 
+}

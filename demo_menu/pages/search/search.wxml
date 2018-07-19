@@ -1,0 +1,30 @@
+<!--pages/search/search.wxml-->
+<view class='page-discovery'>
+    <view class='search-bar'>
+      <view class='search-radius2'>
+        <icon type='search' size='14' class='search-icon'></icon>
+        <input class='search-input' placeholder='想吃什么' confirm-type="search" bindconfirm="setMenuStorage"></input>
+      </view>
+    </view>
+</view>
+<!-- 热门搜索 -->
+<view>
+  <view calss="layers-title-view">
+    <text class='layers-title'>热门搜索</text>
+    <view class='Grid2'>
+      <label class='Grid-cell2 Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index<12}}">
+        {{item.name}}
+      </label>
+    </view>
+  </view>
+</view>
+
+<view class='title'>
+  <text class='layers-title'>搜索历史</text>
+  <icon class="clear" type='clear' size='20' bindtap='OnClear'>as</icon>
+</view>
+<view class='Grid2'>
+    <label class='Grid-cell2 Grid-cell-font' wx:for="{{sousuoData}}" wx:for-index="index" wx:if="{{index<12}}" >
+      {{item}}
+    </label>
+</view>    
