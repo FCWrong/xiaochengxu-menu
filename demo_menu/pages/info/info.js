@@ -5,16 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    queryUrl: "https://apis.juhe.cn/cook/query.php",
     queryidURL: "https://apis.juhe.cn/cook/queryid?",
     key: "f0648645e9ce62e65c0308c4ef2d0ad9",
-    menuInfo:{}
+    menuInfo:{},
+    menuItems: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData(options.id);
+     this.getData(options.id);    
   },
 
   getData:function(id){
@@ -48,6 +50,7 @@ Page({
       }
     })
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

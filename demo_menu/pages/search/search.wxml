@@ -7,24 +7,27 @@
       </view>
     </view>
 </view>
+
 <!-- 热门搜索 -->
 <view>
   <view calss="layers-title-view">
     <text class='layers-title'>热门搜索</text>
     <view class='Grid2'>
-      <label class='Grid-cell2 Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index<12}}">
-        {{item.name}}
-      </label>
+      <view class='Grid-cell2 Grid-cell-font' wx:for="{{menuData[0].list}}" wx:for-index="index" wx:if="{{index<12}}">
+        <view data-cid='{{item.id}}' bindtap='tapIndex'>{{item.name}}</view>
+      </view>
     </view>
   </view>
 </view>
 
 <view class='title'>
   <text class='layers-title'>搜索历史</text>
-  <icon class="clear" type='clear' size='20' bindtap='OnClear'>as</icon>
+  <icon class="clear" type='clear' size='20' bindtap='OnClear'></icon>
 </view>
 <view class='Grid2'>
     <label class='Grid-cell2 Grid-cell-font' wx:for="{{sousuoData}}" wx:for-index="index" wx:if="{{index<12}}" >
-      {{item}}
+      <view id='{{item}}' bindtap='tapMenu'>{{item}}</view>
     </label>
 </view>    
+
+

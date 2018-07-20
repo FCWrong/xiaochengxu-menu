@@ -1,0 +1,31 @@
+/* pages/item/item.wxss */
+.item-view{
+  display: flex;
+  flex-direction: column;
+}
+.item-item{
+  width: 100%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2px;
+  background-color: #fefefe;
+}
+.item-item-image{
+  width: 35%;
+  height: 80%;
+  padding: 10px;
+}
+.item-item-desView{
+  flex: 1;
+  padding: 5px;
+}
+.item-item-desView-title{
+  font-size: .9em;
+}
+
+.item-item-desView-des{
+  padding-top: 10px;
+  color: #888;
+  font-size: .8em;
+}

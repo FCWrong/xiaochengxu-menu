@@ -100,7 +100,10 @@ Page({
         "content-type": "application/json"
       },
       success: function (res) {
+        console.log(res.data);
+        
         that.data.menuData=res.data.result;
+        console.log("menu cid=" + that.data.menuData);
         that.setData({
           menuData: that.data.menuData
         })
@@ -112,6 +115,13 @@ Page({
     var id = e.currentTarget.id;
     wx.navigateTo({
       url: '../info/info?id='+id,
+    })
+  },
+  tapIndex: function (e) {
+    var cid = e.currentTarget.dataset.cid;
+    console.log("cid="+cid);
+    wx.navigateTo({
+      url: '../item/item?cid=' + cid,
     })
   },
   /**

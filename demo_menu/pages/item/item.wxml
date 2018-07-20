@@ -1,0 +1,18 @@
+<!--pages/item/item.wxml-->
+<view class='item-view'> 
+  <view wx:if="{{error.length>0}}">{{error}}</view>
+  <view wx:else>
+    <view wx:for="{{menuItems}}">
+      <view class='item-item'>
+        <!-- <view id='{{item.id}}' bindtap='tapItem'>      -->
+          <image class='item-item-image' src='{{item.albums[0]}}' mode='aspectFill' id='{{item.id}}' bindtap='tapItem'></image>
+          <view class='item-item-desView' id='{{item.id}}' bindtap='tapItem'>
+            <label class='item-item-desView-title'>{{item.title}}</label>
+            <view class='item-item-desView-des'>{{item.ingredients}}</view>
+          </view>
+        <!-- </view> -->
+      </view>   
+    </view>
+  </view>
+
+</view>

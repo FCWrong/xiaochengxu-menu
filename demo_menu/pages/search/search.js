@@ -46,7 +46,11 @@ Page({
       key: 'sousuoData',
       data: that.data.sousuoData,
     })
-    this.getMenuStorage();  
+    this.getMenuStorage(); 
+    // console.log("menuName=" + e.currentTarget.id);
+    wx.navigateTo({
+      url: '../item/item?menuName=' + e.detail.value,
+    })
   },
 
   OnClear:function(e){
@@ -55,6 +59,20 @@ Page({
       data: [],
     })
     this.getMenuStorage();
+  },
+  tapIndex: function (e) {
+    var cid = e.currentTarget.dataset.cid;
+    console.log("cid=" + cid);
+    wx.navigateTo({
+      url: '../item/item?cid=' + cid,
+    })
+  },
+  tapMenu:function(e){
+    var menuName = e.currentTarget.id;
+    console.log("menuName=" + e.currentTarget.id);
+    wx.navigateTo({
+      url: '../item/item?menuName=' + menuName,
+    })
   },
 
   //分类标签列表
@@ -82,6 +100,7 @@ Page({
       }
     })
   },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

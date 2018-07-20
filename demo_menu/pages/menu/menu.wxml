@@ -12,25 +12,15 @@
 <!-- 热门分类 -->
 <view>
   <view calss="layers-title-view">
-    <text class='layers-title'>热门分类</text>
-    <view class='Grid'>
-      <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index<4}}">
-        {{item.name}}
-      </label>
-    </view>
-    <view class='Grid'>
-      <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index>=4&&index<8}}">
-        {{item.name}}
-      </label>
-    </view>
-    <view class='Grid'>
-      <label class='Grid-cell Grid-cell-font' wx:for="{{menuData}}" wx:for-index="index" wx:if="{{index>=8&&index<12}}">
-        {{item.name}}
-      </label>
+    <text class='layers-title'>热门搜索</text>
+    <view class='Grid2'>
+      <view class='Grid-cell2 Grid-cell-font' wx:for="{{menuData[1].list}}" wx:for-index="index" wx:if="{{index<12}}">
+        <view data-cid='{{item.id}}' bindtap='tapIndex'>{{item.name}}</view>
+      </view>
     </view>
   </view>
- 
 </view>
+ 
 <!-- 精品好菜 -->
   <view calss="layers-title-view">
     <text class='layers-title'>精品好菜</text>

@@ -1,9 +1,12 @@
 {
   "pages": [
     "pages/menu/menu",
+    "pages/search/search",
+    
+    "pages/item/item",
+    
     "pages/info/info",
     
-    "pages/search/search",
     "pages/index/index"
     
   ],
