@@ -1,12 +1,10 @@
 {
   "pages": [
+    "pages/classify/classify",
     "pages/menu/menu",
     "pages/search/search",
-    
     "pages/item/item",
-    
     "pages/info/info",
-    
     "pages/index/index"
     
   ],
