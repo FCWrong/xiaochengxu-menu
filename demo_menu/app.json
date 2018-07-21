@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/classify/classify",
     "pages/menu/menu",
     "pages/search/search",
     "pages/item/item",
