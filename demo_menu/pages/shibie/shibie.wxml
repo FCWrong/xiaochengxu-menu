@@ -1,0 +1,2 @@
+<!--pages/shibie/shibie.wxml-->
+<text>{{token}}</text>

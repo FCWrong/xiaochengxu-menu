@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/shibie/shibie",
+    "pages/test/test",
+    
     "pages/menu/menu",
     "pages/search/search",
     "pages/item/item",
