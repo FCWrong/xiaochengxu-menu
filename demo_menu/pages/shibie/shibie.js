@@ -1,5 +1,9 @@
 // pages/shibie/shibie.js
 // const base64=require("../../utils/base64.js");
+//文件引用
+
+//函数调用
+
 
 Page({
 
@@ -53,7 +57,7 @@ Page({
     var that=this;
     wx.chooseImage({
       success: function(res1) {
-        // console.log("imageUrl=" + res1.tempFilePaths[0]);
+        console.log("imageUrl=" + res1.tempFilePaths[0]);
         wx.getStorage({
           key: 'baiduApi_token',
           success: function (res) {
@@ -64,7 +68,7 @@ Page({
               data: {
                 filter_threshold: 0.95,
                 baike_num: 1,
-                image: encodeURI(that.urlTobase64(res1.tempFilePaths[0]))
+                image: that.urlTobase64(res1.tempFilePaths[0])
               },
               header: {
                 'content-type':"application/x-www-form-urlencoded"
@@ -82,15 +86,16 @@ Page({
     
   },
   urlTobase64: function (url) {
-
     wx.request({
       url: url,
+      method: 'GET',
       responseType: 'arraybuffer',//最关键的参数，设置返回的数据格式为arraybuffer
       success: res => {
-        console.log(res);
+        console.log(res.data);
         let base64 = wx.arrayBufferToBase64(res.data);//把arraybuffer转成base64
         // base64 = 'data:image/jpeg;base64,' + base64　//不加上这串字符，在页面无法显示的哦
-        base64 = encodeURI(base64);
+        // console.log(base64);
+        base64 = encodeURIComponent(base64);
         // console.log(base64);
         return base64;
       }
