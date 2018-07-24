@@ -19,6 +19,13 @@ Page({
     
     keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 
+    aliAppkey:"24983118",
+    aliAppSecret:"82faf8a4050c9d994d6d68787e39075d",
+    aliAppCode:"1d209ea0c35c4945800cb46f3e85d4d5",
+
+    aliDetaIList:"http://ali-weixin-hot.showapi.com/articleDetalList",
+
+
     token:{}
   },
 
@@ -27,7 +34,24 @@ Page({
    */
   onLoad: function (options) {
     // this.getAccessToken();
-    this.shibieAPI();
+    // this.shibieAPI();
+    this.getWexxin();
+  },
+
+  getWexxin:function(){
+    var that=this;
+    wx.request({
+      url: this.data.aliDetaIList,
+      header:{
+        "Authorization": "APPCODE "+this.data.aliAppCode
+      },
+      data:{
+
+      },
+      success(res){
+        console.log(res.data);
+      }
+    })
   },
   // 获取百度Access_token API
   getAccessToken:function(){
