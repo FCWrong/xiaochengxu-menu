@@ -1,0 +1,126 @@
+/* miniprogram/pages/myflags/myflags.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  
+}
+.bg{
+  width: 100%;
+  height: 100%;
+  background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+  background-image: url("http://img.hb.aicdn.com/27580eacc7117c24ad59ec39e5d59b6c5e483e6d2d431-3Zeswj_fw658");
+}
+.tagView{
+  height: 70rpx;
+  margin-left: 20rpx;
+  display: flex;
+}
+.tag{
+  font-weight: 600;
+  font-size: 1.2em;
+  color:yellow;
+}
+.tagText{
+  font-weight: 600;
+  font-size: 1em;
+  color:white;
+  margin-left: 10rpx
+}
+.dayOff{
+  display: flex;
+  width: 100%;
+  height: 170rpx;
+  margin-left: 80rpx;
+}
+.day{
+  font-weight: 600;
+  font-size: 3.5em;
+  color:yellow;
+}
+.off{
+  font-weight: 600;
+  font-size: 1.5em;
+  color:white;
+  margin-left: 30;
+  margin-top: 80rpx;
+}
+.progressView{
+  display: flex;
+}
+.progress{
+  width: 85%;
+  margin-left: 80rpx;
+  /* margin-right: 80rpx; */
+  /* 透明度 */
+  opacity:0.4;
+}
+.progressValue{
+  width: 15%;
+  margin-left: 20rpx;
+  color: yellow;
+  font-size: 1em;
+  font-weight: 600
+}
+.titleView{
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  margin-top: 80rpx;
+}
+.title{
+  font-size: 3em;
+  font-weight: 600;
+  opacity:1;
+}
+.des{
+  margin-top: 20rpx;
+  font-weight: 600;
+  opacity:0.6;
+  color:black
+}
+.attendanceView{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 350rpx;
+}
+.userView{
+  display: flex;
+}
+.atUser{
+  font-size: 0.8em;
+  font-weight: 600;
+  color:yellow;
+  margin-left: 20rpx;
+}
+.user{
+  font-size: 0.8em;
+  font-weight: 600;
+  color:yellow;
+  /* margin-left: 20rpx; */
+}
+.have{
+  font-size: 0.8em;
+  color: white;
+  font-weight: 600;
+  /* opacity:0.6; */
+}
+.attendance{
+  display: flex;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.date{
+  width: 15%;
+  font-size: 0.8em;
+  color: white;
+  font-weight: 600;
+  opacity:0.7;
+}
+.attendanceDes{
+  width: 75%;
+  font-size: 0.8em;
+  color: white;
+  font-weight: 600;
+  /* opacity:0.7; */
+}

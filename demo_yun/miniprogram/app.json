@@ -1,0 +1,18 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/myflags/myflags",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib"
+    
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  }
+
+}

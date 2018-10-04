@@ -1,0 +1,43 @@
+
+<view class="bg">
+  <view class='tagView'>
+  </view>
+  <view class='tagView'>
+    <view class='tag'>#</view>
+    <view class='tagText'>健康</view>
+  </view>
+  <view class="dayOff">
+    <view class='=day'>15</view>
+    <label class='off'>off</label>
+  </view>
+  <view class='progressView'>
+    <progress class='progress' percent="80" stroke-width='18' backgroundColor='black' activeColor='#ffffff'></progress>
+    <label class='progressValue'>90</label>
+  </view>
+  <view class='titleView'>
+    <view class='title'>好好吃早餐</view>
+    <view class='des'>健康+成就梦想，健康+是你我最大的追求，人生健康30新标准第二轮投票活动终于来了。谁是最后的冠军？谁的健康宣言会成为三棵树人生健康新标准？最终前十名的获得者又会是谁？大奖终究会花落谁家？</view>
+  </view>
+  <view class='attendanceView'>
+    <view class="userView">
+      <view class='atUser'>@</view>
+      <view class='user'>FC:</view>
+      <view class='have'>已经坚持了75天</view>
+    </view>
+    <view class='attendanceList'>
+      <view class='attendance'>
+        <view class='date'>10-04</view>
+        <view class='attendanceDes'>每天坚持！加油！</view>
+      </view>
+      <view class='attendance'>
+      
+        <view class='date'>10-04</view>
+        <view class='attendanceDes'>身体已经好太多了</view>
+      </view>
+      <view class='attendance'>
+        <view class='date'>10-04</view>
+        <view class='attendanceDes'>还得继续努力啊，相信一定会成为最好的自己的，给自己打气</view>
+      </view>
+    </view>
+  </view>
+</view>
