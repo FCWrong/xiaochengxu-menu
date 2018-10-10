@@ -1,0 +1,6 @@
+<label>客户端</label>
+<button bindtap='add'>新增字段</button>
+<button bindtap=''>更新字段</button>
+<button bindtap=''>删除字段</button>
+<button bindtap=''>获取字段</button>
+

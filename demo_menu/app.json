@@ -1,16 +1,14 @@
 {
   "pages": [
-    "pages/menu/menu",
-    "pages/index/index",
-    "pages/shibie/shibie",
-    "pages/test/test",
     
     
     "pages/search/search",
     "pages/item/item",
-    "pages/info/info"
-   
-    
+    "pages/info/info",
+    "pages/index/index",
+    "pages/yun/yun",
+    "pages/shibie/shibie",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
