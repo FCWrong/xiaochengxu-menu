@@ -1,7 +1,7 @@
 
 .inputView{
   background-color: #222;
-  height: 100rpx;
+  height: 105rpx;
   width: 100%;
 }
 .input{
@@ -24,20 +24,56 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   /* color: gray; */
 }
 .icon{
   /* padding-top: 10rpx; */
   margin-right: 20rpx;
   font-weight: 400;
-  font-size: 1em;
+  font-size: .8em;
   color: #fff;
-  width: 100rpx;
-  background-color: #000;
+  width: 80rpx;
+  background-color: #ddd;
   text-align: center;
   border-radius: 8px;
+  align-items: center;
+  height: 50rpx;
+}
+.doing{
+  background-color: #eee;
+  padding-top: 2rpx;
+  padding-bottom: 1rpx;
+  /* margin-bottom: 1rpx; */
 }
 .doingView{
-  margin: 20rpx;
   width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rpx;
+  background-color: #fff;
+  /* padding-left: 20rpx;  */
+  align-items: center;
+  
+}
+.doingView-switch-view{
+   width: 8%;
+   padding-left: 2%;
+}
+.doingView-input{
+  width: 80%; 
+}
+.doingView-input{
+  width: 80%;
+}
+.dongView-input2{
+  width: 80%;
+  opacity:0.4;
+}
+.clear{
+  width: 8%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 10rpx;
 }

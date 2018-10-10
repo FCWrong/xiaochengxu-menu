@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    
     "pages/todolist/todolist",
     "pages/myflags/myflags",
     "pages/index/index",
@@ -18,6 +19,6 @@
     "navigationBarTitleText": "ToDoList",
     "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
-    "enablePullDownRefresh":false
+    "enablePullDownRefresh": false
   }
 }
