@@ -1,13 +1,15 @@
 {
   "pages": [
+    "pages/menu/menu",
+    "pages/index/index",
     "pages/shibie/shibie",
     "pages/test/test",
     
-    "pages/menu/menu",
+    
     "pages/search/search",
     "pages/item/item",
-    "pages/info/info",
-    "pages/index/index"
+    "pages/info/info"
+   
     
   ],
   "window": {

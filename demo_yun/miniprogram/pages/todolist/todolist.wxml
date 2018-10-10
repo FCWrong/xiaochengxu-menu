@@ -1,0 +1,12 @@
+<view class='inputView'>
+  <input class="input" placeholder='添加ToDo'></input>
+</view>
+<view class='title'>
+  <label>正在进行</label>
+  <!-- <icon class="icon" type='success'></icon> -->
+  <view class='icon'>53</view>
+</view>
+<view class='doingView'>
+  <switch type='checkbox' color='#222'>6:00下楼吃晚饭</switch>
+</view>
+<view class='title'>已经完成</view>
