@@ -1,39 +1,30 @@
 <view class='inputView'>
   <input class="input" placeholder='添加ToDo'></input>
 </view>
-<view class='title'>
-  <label>正在进行</label>
-  <!-- <icon class="icon" type='success'></icon> -->
-  <view class='icon'>1</view>
-</view>
-<view class="doing">
-  <view class='doingView'>
-    <view class="doingView-switch-view">
-      <switch type='checkbox' color='#222'></switch>
-    </view>
-    <view class='doingView-input'>
-      <input value='后续ios马甲包的出包方案设计，开发，打包'></input>
-    </view>
-    <view class='clear'>
-      <icon type='clear' size='25'></icon>
+<!-- <scroll-view scroll-y="true"> -->
+<view class='main'>
+    <view class='title'>
+    <label>正在进行</label>
+    <!-- <icon class="icon" type='success'></icon> -->
+    <view class='icon'>1</view>
+  </view>
+  <view class='title'>
+    <label>已经完成</label>
+    <!-- <icon class="icon" type='success'></icon> -->
+    <view class='icon'>1</view>
+  </view>
+  <view class="container">
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+      <view class="content">
+        <view class="doingView-switch-view">
+        <switch type='checkbox' color='#222'></switch>
+      </view>
+      <view class='doingView-input'>
+        <input value='后续ios马甲包的出包方案设计，开发，打包'></input>
+      </view>
+      </view>
+      <view class="del" catchtap="del" >删除</view>
     </view>
   </view>
 </view>
-<view class='title'>
-  <label>已经完成</label>
-  <!-- <icon class="icon" type='success'></icon> -->
-  <view class='icon'>1</view>
-</view>
-<view class="doing">
-  <view class='doingView'>
-    <view class="doingView-switch-view">
-      <switch checked="true" disabled="true" type='checkbox' color='#222'></switch>
-    </view>
-    <view class='dongView-input2'>
-      <input value='后续ios马甲包的出包方案设计，开发，打包'></input>
-    </view>
-    <view class='clear'>
-      <icon type='clear' size='25'></icon>
-    </view>
-  </view>
-</view>
+<!-- </scroll-view> -->

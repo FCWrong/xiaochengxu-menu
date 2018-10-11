@@ -1,19 +1,36 @@
 
+::-webkit-scrollbar {
+     width: 0;
+     height: 0;
+     color: transparent;
+}
+
+
 .inputView{
   background-color: #222;
   height: 105rpx;
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index:2
 }
+
 .input{
-  margin-left: 20rpx;
+  margin-left: 25rpx;
   /* margin-right: 20rpx;x */
   /* border:  1rpx solid #eee; */
   /* border-radius: 8px; */
   border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   padding-left: 20rpx;
   height: 80rpx;
   background-color: #fff;
   /* width: 100%; */
+}
+
+.main{
+  margin-top: 105rpx;
+  z-index:1
 }
 .title{
   margin-top: 10rpx;
@@ -42,8 +59,8 @@
 }
 .doing{
   background-color: #eee;
-  padding-top: 2rpx;
-  padding-bottom: 1rpx;
+  /* padding-top: 2rpx; */
+  /* padding-bottom: 1rpx; */
   /* margin-bottom: 1rpx; */
 }
 .doingView{
@@ -51,29 +68,108 @@
   height: 100rpx;
   display: flex;
   flex-direction: row;
-  margin-bottom: 1rpx;
+  /* margin-bottom: 1rpx; */
   background-color: #fff;
   /* padding-left: 20rpx;  */
   align-items: center;
-  
+  overflow: hidden;
 }
 .doingView-switch-view{
    width: 8%;
-   padding-left: 2%;
+   /* padding-left: 2%; */
 }
 .doingView-input{
-  width: 80%; 
-}
-.doingView-input{
-  width: 80%;
+  width: 92%; 
 }
 .dongView-input2{
-  width: 80%;
+  width: 92%;
   opacity:0.4;
 }
-.clear{
-  width: 8%;
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-top: 10rpx;
+
+
+
+.container {
+
+min-height: 100%;
+
+/* padding: 20rpx 0rpx; */
+
+border-top:1px solid #ccc;
+
+}
+.touch-item {
+
+font-size: 1em;
+height: 100rpx;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+border-bottom:1px solid #ccc;
+
+width: 100%;
+
+overflow: hidden
+
+}
+
+.content {
+
+width: 100%;
+
+padding: 10px;
+
+line-height: 22px;
+
+margin-right:0;
+
+-webkit-transition: all 0.4s;
+
+transition: all 0.4s;
+
+-webkit-transform: translateX(90px);
+
+transform: translateX(90px);
+
+margin-left: -90px;
+
+display: flex;
+
+}
+
+.del {
+
+background-color: orangered;
+
+width: 180rpx;
+height: 100%;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+justify-content: center;
+
+color: #fff;
+
+-webkit-transform: translateX(90px);
+
+transform: translateX(90px);
+
+-webkit-transition: all 0.4s;
+
+transition: all 0.4s;
+
+}
+
+.touch-move-active .content,
+
+.touch-move-active .del {
+
+-webkit-transform: translateX(0);
+
+transform: translateX(0);
+
 }

@@ -18,7 +18,7 @@ Page({
 
     // common.sys_main(app, that, e);
 
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < 10; i++) {
 
       this.data.items.push({
 

@@ -1,8 +1,10 @@
 {
   "cloud": true,
   "pages": [
-    
+
     "pages/todolist/todolist",
+    "pages/todoDemo/todoDemo",
+    
     "pages/myflags/myflags",
     "pages/index/index",
     "pages/userConsole/userConsole",
