@@ -11,14 +11,14 @@ Page({
   },
 
   onLoad: function (e) {
-
+    this.onGetOpenid();
     var that = this;
 
     //common是自己写的公共JS方法，可忽略
 
     // common.sys_main(app, that, e);
 
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < 4; i++) {
 
       this.data.items.push({
 
@@ -36,9 +36,26 @@ Page({
 
     });
 
+
   }
 
   ,
+  //获取用户openId
+  onGetOpenid: function () {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getTodoList',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user: ', res.result)
+
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+
+      }
+    })
+  },
 
   //手指触摸动作开始 记录起点X坐标
 
@@ -48,7 +65,7 @@ Page({
 
     this.data.items.forEach(function (v, i) {
 
-      if (v.isTouchMove)//只操作为true的
+      if (v.isTouchMove) //只操作为true的
 
         v.isTouchMove = false;
 
@@ -72,19 +89,25 @@ Page({
 
     var that = this,
 
-      index = e.currentTarget.dataset.index,//当前索引
+      index = e.currentTarget.dataset.index, //当前索引
 
-      startX = that.data.startX,//开始X坐标
+      startX = that.data.startX, //开始X坐标
 
-      startY = that.data.startY,//开始Y坐标
+      startY = that.data.startY, //开始Y坐标
 
-      touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
+      touchMoveX = e.changedTouches[0].clientX, //滑动变化坐标
 
-      touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
+      touchMoveY = e.changedTouches[0].clientY, //滑动变化坐标
 
       //获取滑动角度
 
-      angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
+      angle = that.angle({
+        X: startX,
+        Y: startY
+      }, {
+          X: touchMoveX,
+          Y: touchMoveY
+        });
 
     that.data.items.forEach(function (v, i) {
 
@@ -155,6 +178,3 @@ Page({
   }
 
 })
-
-
-
