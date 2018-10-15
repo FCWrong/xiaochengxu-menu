@@ -1,12 +1,12 @@
 <view class='inputView'>
-  <input class="input" placeholder='添加ToDo'></input>
+  <input class="input" placeholder='添加ToDo' bindconfirm='addTodo'></input>
 </view>
 <!-- <scroll-view scroll-y="true"> -->
 <view class='main'>
   <view class='title'>
     <label>正在进行</label>
     <!-- <icon class="icon" type='success'></icon> -->
-    <view class='icon'>1</view>
+    <view class='icon'>{{items.length}}</view>
   </view>
   <view class="container">
     <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
@@ -15,7 +15,7 @@
           <switch type='checkbox' color='#222'></switch>
         </view>
         <view class='doingView-input'>
-          <input value='后续ios马甲包的出包方案设计，开发，打包'></input>
+          <input value="{{item.des}}"></input>
         </view>
       </view>
       <view class="del" catchtap="del">删除</view>

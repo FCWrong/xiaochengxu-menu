@@ -18,41 +18,91 @@ Page({
 
     // common.sys_main(app, that, e);
 
-    for (var i = 0; i < 4; i++) {
+    // for (var i = 0; i < 4; i++) {
 
-      this.data.items.push({
+    //   this.data.items.push({
 
-        content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦",
+    //     content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦",
 
-        isTouchMove: false //默认隐藏删除
+    //     isTouchMove: false //默认隐藏删除
 
-      })
+    //   })
 
-    }
+    // }
 
-    this.setData({
+    // this.setData({
 
-      items: this.data.items
+    //   items: this.data.items
 
-    });
+    // });
 
 
-  }
+  },
+  //添加新的todo
+  addTodo:function(e){
+    var that=this
+    wx.cloud.callFunction({
+      name:"addTodo",
+      data:{
+        des: e.detail.value
+      },
+      success:res=>{
+        console.log('[云函数] [addTodo] : ', res.result)
+        if (res.result.errMsg =="collection.add:ok"){
+          that.getTodo(res.result._id)
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [addTodo] 调用失败', err)
+      }
+    })
+  },
+  //获取单条id
+  getTodo:function(id){
+    var that = this;
+    wx.cloud.callFunction({
+      name: 'getTodo',
+      data: {
+        id:id
+      },
+      success: res => {
+        console.log('[云函数] [getTodo] : ', res.result)
+        var todo = res.result.data[0];
+        todo.isTouchMove=false
 
-  ,
-  //获取用户openId
+        that.data.items.push(todo)
+        that.setData({
+          items: that.data.items
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getTodo] 调用失败', err)
+      }
+    })
+  },
+  //获取用户todoList
   onGetOpenid: function () {
-    // 调用云函数
+    var that=this;
     wx.cloud.callFunction({
       name: 'getTodoList',
       data: {},
       success: res => {
-        console.log('[云函数] [login] user: ', res.result)
-
+        console.log('[云函数] [getTodoList] : ', res.result)
+        var list = res.result;
+        
+        that.setData({
+          items: res.result.data
+        })
+        that.data.items.forEach(function (v, i) {
+          v.isTouchMove = false;
+        })
+        that.setData({
+          items: res.result.data
+        })
+        console.log("items",that.data.items);
       },
       fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-
+        console.error('[云函数] [getTodoList] 调用失败', err)
       }
     })
   },
