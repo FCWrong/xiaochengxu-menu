@@ -5,23 +5,31 @@
 }
 
 .inputView {
-  background-color: #222;
-  height: 105rpx;
+  background-color: #fff;
   width: 100%;
   position: fixed;
-  top: 0;
+  bottom: 0;
   z-index: 2;
+  align-items: center;
+  /* justify-content: center; */
+  height: 100rpx;
+  display: flex;
+}
+
+.inputView_label{
+  font-weight: 400;
+  font-size: 1.5em
 }
 
 .input {
-  margin-left: 25rpx;
-  /* margin-right: 20rpx;x *//* border:  1rpx solid #eee; *//* border-radius: 8px; */
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  padding-left: 20rpx;
-  height: 80rpx;
-  background-color: #fff;
-  /* width: 100%; */
+  /* margin-left: 25rpx; */
+  /* margin-right: 20rpx;border:  1rpx solid #eee;border-radius: 8px; */
+  /* border-top-left-radius: 8px; */
+  /* border-bottom-left-radius: 8px; */
+  /* padding-left: 20rpx; */
+  
+  /* background-color: #fff;  */
+  width: 100%;
 }
 
 .main {
@@ -94,7 +102,7 @@
 }
 
 .touch-item {
-  font-size: 1em;
+  font-size: 1em; 
   height: 100rpx;
   display: flex;
   align-items: center;
