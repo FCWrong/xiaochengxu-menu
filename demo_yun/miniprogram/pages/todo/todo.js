@@ -7,12 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // items: [
-    //   { name: 'standard is dealt for u.', value: '0' },
-    //   { name: 'standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.', value: '1' }
-    // ],
 
-    items: [{ name: '集结部队', value: '0', checked: true },
+    title:"项目（点击编辑；长按删除）",
+    items: [{ name: '点击完成；长按删除', value: '0', checked: true },
     { name: 'standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.', value: '1' }],
 
     startX: 0, //开始坐标
