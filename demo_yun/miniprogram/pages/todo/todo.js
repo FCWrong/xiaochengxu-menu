@@ -21,7 +21,27 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
 
-    disabled_checkbox: false
+    isToday:true,
+    isHaveTodo:false,
+    todoProjects:[],
+    doneProjects:[],
+
+  },
+  //获取todoList
+  getToList:function(){
+    try {
+      const res = wx.getStorageInfoSync()
+
+      var todoList;
+      var doneList;
+      var count = keys.length;
+      for (var i = 0; i < count; i++) {
+        var value = wx.getStorageSync(keys[i]);
+
+      }
+    } catch (e) {
+      console.log('error  获取所有缓存：', e);
+    }
   },
 
   tabClick: function (e) {
@@ -53,9 +73,7 @@ Page({
 
   onDel: function (e) {
     console.log('onDel，携带value值为：', e);
-    this.setData({
-      disabled_checkbox: false
-    })
+
     var that = this;
     wx.showActionSheet({
       itemList: ['删除'],
