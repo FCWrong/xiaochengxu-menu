@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    
     "pages/todo/todo",
     "pages/todolist/todolist",
     "pages/todoDemo/todoDemo",
