@@ -9,13 +9,21 @@
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
-      <view class="weui-tab__panel">
-        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+      <view class="weui-tab__panel" >
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}" bindtouchstart="touchStart" bindtouchend="touchEnd">
 
-          <view>
-            <input class="weui-cells__title_big" value='今天'></input>
+          <view wx:if="{{isShowTemp}}">
+            <input class="weui-cells__title_big" value='{{projectTemp.name}}'></input>
             <view class="weui-cells weui-cells_after-title">
               <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label " wx:for="{{projectTemp.todoList}}" wx:key="value" >
+                  <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+                  <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                    <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                    <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                  </view>
+                  <view class="weui-cell__bd" bindlongpress='onDel'>{{item.name}}</view>
+                </label>
               </checkbox-group>
               <view class="weui-cell weui-cell_link">
                 <view class="weui-cell__bd">
@@ -25,7 +33,30 @@
               </view>
             </view>
           </view>
-          <view>
+
+          <view wx:for="{{todoProjects}}" wx:for-item="project" wx:key="createTime">
+            <input class="weui-cells__title_big" value='{{project.name}}'></input>
+            <view class="weui-cells weui-cells_after-title">
+              <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label " wx:for="{{project.todoList}}" wx:key="value" >
+                  <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+                  <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                    <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                    <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                  </view>
+                  <view class="weui-cell__bd" bindlongpress='onDel'>{{item.name}}</view>
+                </label>
+              </checkbox-group>
+              <view class="weui-cell weui-cell_link">
+                <view class="weui-cell__bd">
+                  <!-- <label>添加更多</label> -->
+                  <input placeholder="添加更多"></input>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view wx:if="{{!isHaveTodo}}">
             <input class="weui-cells__title_big" value='{{title}}'></input>
             <view class="weui-cells weui-cells_after-title">
               <checkbox-group bindchange="checkboxChange">

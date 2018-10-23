@@ -8,9 +8,12 @@ Page({
    */
   data: {
 
-    title:"项目（点击编辑；长按删除）",
-    items: [{ name: '点击完成；长按删除', value: '0', checked: true },
-    { name: 'standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.standard is dealicient for u.', value: '1' }],
+    title: "项目（点击编辑；长按删除）",
+    items: [{ name: '第一条清单（点击完成）', value: '0', checked: true },
+    { name: '第二条清单（长按删除）', value: '1' },
+    { name: '第三条清单（点击添加更多，添加新的清单）', value: '2' },
+    { name: '第四条清单（拉下创建新的项目）', value: '3' },
+    { name: '第五条清单（欢迎加入QQ群：12456789）', value: '4' }],
 
     startX: 0, //开始坐标
 
@@ -21,27 +24,68 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
 
-    isToday:true,
-    isHaveTodo:false,
-    todoProjects:[],
-    doneProjects:[],
+    projectTemp: {},
+    isShowTemp: false,
+
+    isHaveTodo: false,
+    isHaveToDay:true,
+    todoProjects: [],
+    doneProjects: [],
+
 
   },
   //获取todoList
-  getToList:function(){
+  getToList: function () {
     try {
       const res = wx.getStorageInfoSync()
 
-      var todoList;
-      var doneList;
+      var todoProjects = [];
+      var doneProjects = [];
+      var keys = res.keys;
       var count = keys.length;
       for (var i = 0; i < count; i++) {
         var value = wx.getStorageSync(keys[i]);
+        console.log('value值为：', value);
+        if(value.name=="今天"){
+          value.name = timeToData(value.createTime);
+          if(value.name=="今天");
+          this.setData({
+            isHaveToDay:true
+          })
+        }
 
+        if (value.isDone) {
+          doneProjects.push(value);
+        } else {
+          todoProjects.push(value);
+        }
       }
+
+      var isHaveTodo = todoProjects.length > 0;
+      console.log('isHaveTodo值为：', isHaveTodo);
+      console.log('todoProjects.length值为：', todoProjects.length);
+      this.setData({
+        isHaveTodo: isHaveTodo,
+        todoProjects: todoProjects,
+        doneProjects: doneProjects
+      })
     } catch (e) {
       console.log('error  获取所有缓存：', e);
     }
+  },
+  //是否是今天
+  isToDay:function(e){
+    return new Date(e).toDateString() === new Date().toDateString()
+  },
+  //事件戳转日期
+  timeToData:function(e){
+    var date=new Date(e);
+    // console.log("date : ", (date.getMonth() + 1) + "-" + (date.getDate()))
+    if (isToDay(e)){
+      return "今天"
+    }else{
+      return (date.getMonth() + 1) + "-" + (date.getDate())
+    }  
   },
 
   tabClick: function (e) {
@@ -84,10 +128,10 @@ Page({
         }
       },
       fail: function (res) {
-     
+
       },
       complete: function (res) {
-       
+
       }
     });
   },
@@ -105,6 +149,7 @@ Page({
         });
       }
     });
+    this.getToList();
   },
 
   /**
@@ -140,13 +185,50 @@ Page({
    */
   onPullDownRefresh: function () {
 
+    var project = {};
+    project.id = Date.now()
+    project.name = "今天";
+    project.createTime = project.id;
+    project.isTop = false;
+    project.isDone = false;
+    project.todoList = [];
+
+    this.setData({
+      projectTemp: project,
+      isShowTemp: true
+    })
+
+
+    wx.stopPullDownRefresh();
+  },
+
+  touchStart:function(e){
+    console.log("touchStart",e)
+    this.setData({
+      startY: e.changedTouches[0].clientY,
+    })
+  },
+  touchEnd:function(e){
+    console.log("touchEnd", e)
+    var endY = e.changedTouches[0].clientY;
+    var y=endY-this.data.startY;
+    if(y<-100){
+      console.log("y<-100");
+      this.setData({
+        isShowTemp: false
+      })
+    }
+  },
+
+  addToDoTemp:function(){
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('onReachBottom');
   },
 
   /**
