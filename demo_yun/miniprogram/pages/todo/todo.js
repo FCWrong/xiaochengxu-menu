@@ -15,9 +15,10 @@ Page({
     { name: '第四条清单（拉下创建新的项目）', value: '3' },
     { name: '第五条清单（欢迎加入QQ群：12456789）', value: '4' }],
 
-    startX: 0, //开始坐标
-
     startY: 0,
+    
+    startTime:0,
+    time:0,
 
     tabs: ["待办", "完成"],
     activeIndex: 0,
@@ -28,7 +29,7 @@ Page({
     isShowTemp: false,
 
     isHaveTodo: false,
-    isHaveToDay:true,
+    isHaveToDay: true,
     todoProjects: [],
     doneProjects: [],
 
@@ -46,11 +47,11 @@ Page({
       for (var i = 0; i < count; i++) {
         var value = wx.getStorageSync(keys[i]);
         console.log('value值为：', value);
-        if(value.name=="今天"){
+        if (value.name == "今天") {
           value.name = timeToData(value.createTime);
-          if(value.name=="今天");
+          if (value.name == "今天");
           this.setData({
-            isHaveToDay:true
+            isHaveToDay: true
           })
         }
 
@@ -74,18 +75,18 @@ Page({
     }
   },
   //是否是今天
-  isToDay:function(e){
+  isToDay: function (e) {
     return new Date(e).toDateString() === new Date().toDateString()
   },
   //事件戳转日期
-  timeToData:function(e){
-    var date=new Date(e);
+  timeToData: function (e) {
+    var date = new Date(e);
     // console.log("date : ", (date.getMonth() + 1) + "-" + (date.getDate()))
-    if (isToDay(e)){
+    if (isToDay(e)) {
       return "今天"
-    }else{
+    } else {
       return (date.getMonth() + 1) + "-" + (date.getDate())
-    }  
+    }
   },
 
   tabClick: function (e) {
@@ -184,43 +185,51 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log("start xiala")
+    console.log("time ： ",this.data.time)
+    if (this.data.time > 1000) {
+      var project = {};
+      project.id = Date.now()
+      project.name = "今天";
+      project.createTime = project.id;
+      project.isTop = false;
+      project.isDone = false;
+      project.todoList = [];
 
-    var project = {};
-    project.id = Date.now()
-    project.name = "今天";
-    project.createTime = project.id;
-    project.isTop = false;
-    project.isDone = false;
-    project.todoList = [];
-
-    this.setData({
-      projectTemp: project,
-      isShowTemp: true
-    })
-
+      this.setData({
+        projectTemp: project,
+        isShowTemp: true
+      })
+    }
 
     wx.stopPullDownRefresh();
   },
 
-  touchStart:function(e){
-    console.log("touchStart",e)
+  touchStart: function (e) {
+    console.log("touchStart", e)
     this.setData({
       startY: e.changedTouches[0].clientY,
+      startTime: e.timeStamp
     })
   },
-  touchEnd:function(e){
+  touchEnd: function (e) {
     console.log("touchEnd", e)
     var endY = e.changedTouches[0].clientY;
-    var y=endY-this.data.startY;
-    if(y<-100){
+    var y = endY - this.data.startY;
+    var endTime = e.timeStamp;
+    var t = endTime - this.data.startTime;
+    this.setData({
+      time: t
+    })
+    if (y < -100) {
       console.log("y<-100");
       this.setData({
-        isShowTemp: false
+        isShowTemp: false,
       })
     }
   },
 
-  addToDoTemp:function(){
+  addToDoTemp: function () {
 
   },
 
