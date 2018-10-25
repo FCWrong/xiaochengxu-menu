@@ -1,7 +1,7 @@
 {
   "cloud": true,
   "pages": [
-    
+    "pages/qingdan/qingdan",
     "pages/todo/todo",
     "pages/todolist/todolist",
     "pages/todoDemo/todoDemo",
@@ -19,7 +19,6 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "ToDo",
     "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8",
-    "enablePullDownRefresh":true
+    "backgroundColor": "#f8f8f8"
   }
 }

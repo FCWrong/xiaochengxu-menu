@@ -1,0 +1,147 @@
+<swiper class='swiper-view'>
+  <swiper-item>
+    <scroll-view scroll-y="{{isY}}" upper-threshold="-50" class='scrollView' bindscrolltoupper="onTop">
+      <view>
+
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">2018-10-25</view>
+        </view>
+        <!-- <view class="weui-cells__title">复选列表项</view> -->
+        <view class="weui-cells-qingdan weui-cells_after-title">
+          <checkbox-group bindchange="checkboxChange">
+
+            <label wx:if="{{isShowDemo}}" class="weui-cell-qingdan weui-check__label">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <!-- <view wx:if="{{isShowDemo}}" class="weui-cell__bd">试一下啦</view> -->
+              <input class="weui-cell__bd" adjust-position="false" bindblur="inputBlur" focus></input>
+            </label>
+
+            <label class="weui-cell-qingdan weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+          </checkbox-group>
+          <!-- <view class="weui-cell weui-cell_link">
+    <view class="weui-cell__bd">添加更多</view>
+  </view> -->
+        </view>
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">2018-10-25</view>
+        </view>
+        <!-- <view class="weui-cells__title">复选列表项</view> -->
+        <view class="weui-cells-qingdan weui-cells_after-title">
+          <checkbox-group bindchange="checkboxChange">
+            <label class="weui-cell-qingdan weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+          </checkbox-group>
+          <!-- <view class="weui-cell weui-cell_link">
+    <view class="weui-cell__bd">添加更多</view>
+  </view> -->
+        </view>
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">2018-10-25</view>
+        </view>
+        <!-- <view class="weui-cells__title">复选列表项</view> -->
+        <view class="weui-cells-qingdan weui-cells_after-title">
+          <checkbox-group bindchange="checkboxChange">
+            <label class="weui-cell-qingdan weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+          </checkbox-group>
+          <!-- <view class="weui-cell weui-cell_link">
+    <view class="weui-cell__bd">添加更多</view>
+  </view> -->
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" class='scrollView'>
+      <view>
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">2018-10-25</view>
+        </view>
+        <!-- <view class="weui-cells__title">复选列表项</view> -->
+        <view class="weui-cells-qingdan weui-cells_after-title">
+          <checkbox-group bindchange="checkboxChange">
+            <label class="weui-cell-qingdan weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+          </checkbox-group>
+          <!-- <view class="weui-cell weui-cell_link">
+    <view class="weui-cell__bd">添加更多</view>
+  </view> -->
+        </view>
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">2018-10-25</view>
+        </view>
+        <!-- <view class="weui-cells__title">复选列表项</view> -->
+        <view class="weui-cells-qingdan weui-cells_after-title">
+          <checkbox-group bindchange="checkboxChange">
+            <label class="weui-cell-qingdan weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+          </checkbox-group>
+          <!-- <view class="weui-cell weui-cell_link">
+    <view class="weui-cell__bd">添加更多</view>
+  </view> -->
+        </view>
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">2018-10-25</view>
+        </view>
+        <!-- <view class="weui-cells__title">复选列表项</view> -->
+        <view class="weui-cells-qingdan weui-cells_after-title">
+          <checkbox-group bindchange="checkboxChange">
+            <label class="weui-cell-qingdan weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+              <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+
+              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+          </checkbox-group>
+          <!-- <view class="weui-cell weui-cell_link">
+    <view class="weui-cell__bd">添加更多</view>
+  </view> -->
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

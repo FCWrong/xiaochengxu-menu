@@ -21,6 +21,14 @@ icon {
   font-size: 17px;
 }
 
+.weui-cells-qingdan {
+  /* position: relative; */
+  margin-top: 1.17647059em;
+  /* background-color: #fff; */
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
 .weui-cells:before {
   top: 0;
   border-top: 1rpx solid #d9d9d9;
@@ -73,6 +81,17 @@ icon {
 .weui-cell {
   padding: 10px 15px;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.weui-cell-qingdan {
+  padding: 5px 15px;
+  /* position: relative; */
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -837,11 +856,11 @@ icon {
 }
 
 .weui-loadmore {
-  width: 65%;
-  margin: 1.5em auto;
+  width: 100%;
+  /* margin: .5em auto; */
   line-height: 1.6em;
   font-size: 14px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .weui-loadmore__tips {
@@ -851,14 +870,14 @@ icon {
 
 .weui-loadmore_line {
   border-top: 1px solid #e5e5e5;
-  margin-top: 2.4em;
+  margin-top: 2em;
 }
 
 .weui-loadmore__tips_in-line {
   position: relative;
   top: -.9em;
   padding: 0 0.55em;
-  background-color: #fff;
+  background-color: #f8f8f8;
   color: #999;
 }
 
@@ -913,6 +932,13 @@ icon {
 }
 
 .weui-panel__hd {
+  padding: 10px 15px 10px;
+  color: #999;
+  font-size: 14px;
+  position: relative;
+}
+
+.weui-panel__hd_title {
   padding: 14px 15px 10px;
   color: #999;
   font-size: 13px;
