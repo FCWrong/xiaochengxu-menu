@@ -17,7 +17,87 @@ Page({
     ],
 
     isShowDemo:false,
-    isY:true
+    isY:true,
+
+    todolist:null
+
+  },
+  //获取分组方法
+  getToDoList:function(){
+    try {
+      var key ="ToDoList"
+      var value = wx.getStorageSync(key)
+      if (value) {
+        console.log("getGroupList:", value)
+        this.setData({
+          todolist:value
+        })
+      }
+    } catch (e) {
+      console.log("Error-getGroupList:",e)
+    }
+  },
+  setinfo:function(){
+    var info = [
+      [{
+        title: 1540475683,
+        todoList: [{
+          id: 1540475683,
+          time: 1540475683,
+          content: "啊飒飒阿三",
+          isDone: false
+        }]
+      },
+      {
+        title: 1540475683,
+        todoList: [{
+          id: 1540475683,
+          time: 1540475683,
+          content: "啊飒飒阿三",
+          isDone: false
+        }]
+      },
+      {
+        title: 1540475683,
+        todoList: [{
+          id: 1540475683,
+          time: 1540475683,
+          content: "啊飒飒阿三",
+          isDone: false
+        }]
+      }
+      ],
+      [{
+        title: 1540475683,
+        todoList: [{
+          id: 1540475683,
+          time: 1540475683,
+          content: "啊飒飒阿三",
+          isDone: false
+        }]
+      },
+      {
+        title: 1540475683,
+        todoList: [{
+          id: 1540475683,
+          time: 1540475683,
+          content: "啊飒飒阿三",
+          isDone: false
+        }]
+      }
+      ]
+    ];
+
+    try {
+      wx.setStorageSync('ToDoList', info)
+    } catch (e) { 
+      console.log("error",e);
+    }
+  },
+
+  onLoad: function (options) {
+    // this.setinfo();
+    this.getToDoList();
   },
 
   onTop:function(e){
@@ -38,9 +118,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
