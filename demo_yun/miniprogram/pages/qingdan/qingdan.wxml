@@ -1,23 +1,20 @@
 <swiper class='swiper-view' duration="200" bindchange="swiperChange">
-  <block   wx:for="{{todolist}}" wx:for-item="group" wx:key="groupId" wx:for-index="i">
+  <block wx:for="{{todolist}}" wx:for-item="group" wx:key="index" wx:for-index="i">
     <swiper-item>
-      <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="onTop" bindtouchstart='touchStart' bindtouchend='touchEnd'>
+      <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}">
 
-        <block wx:for="{{group}}" wx:for-item="tGroup" wx:key="time" wx:for-index="j">
+        <view class="page__bd page__bd_spacing marginTop2" wx:if="{{todolist[i].gtList.length==0}}">
+          <view class="weui-footer">
+            <view class="weui-footer__text">您还没有待办清单，「下拉」创建第一个待办清单</view>
+          </view>
+        </view>
+
+        <block wx:for="{{group.gtList}}" wx:for-item="tGroup" wx:key="time" wx:for-index="j">
           <view class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{tGroup.title}}</view>
           </view>
           <view class="weui-cells-qingdan weui-cells_after-title">
-            <checkbox-group bindchange="checkboxChange" data-grouptgroup="{{i}};{{j}}">
-
-              <!-- <label wx:if="{{isShowDemo&&i==pageIndex&&j==0}}" class="weui-cell-qingdan weui-check__label">
-                <checkbox class="weui-check" value="xxxx" checked="false" />
-                <view class="weui-cell__hd weui-check__hd_in-checkbox">
-                  <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
-                  <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
-                </view>
-                <input class="weui-cell__bd"  data-grouptgroup="{{i}};{{j}}" adjust-position="false" bindblur="inputBlur" bindconfirm="confirm" focus></input>
-              </label> -->
+            <checkbox-group bindchange="{{isfocus?'':'checkboxChange'}}" data-grouptgroup="{{i}};{{j}}">
 
               <label class="weui-cell-qingdan weui-check__label" wx:for="{{tGroup.todoList}}" wx:for-item="todo" wx:key="id" wx:for-index="k">
                 <checkbox class="weui-check" value="{{todo.id}}" checked="{{todo.isDone}}" />
@@ -25,8 +22,8 @@
                   <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!todo.isDone}}"></icon>
                   <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{todo.isDone}}"></icon>
                 </view>
-                <input wx:if="{{isShowDemo&&i==pageIndex&&j==0&&k==0}}" class="weui-cell__bd"  data-grouptgroup="{{i}};{{j}};{{k}}" adjust-position="false" bindblur="confirm" focus></input>
-                <view wx:if="{{!isShowDemo||i!=pageIndex||j!=0||k!=0}}" class="weui-cell__bd">{{todo.content}}</view>
+                <input wx:if="{{isShowDemo&&i==pageIndex&&j==0&&k==0}}" class="weui-cell__bd" data-grouptgroup="{{i}};{{j}};{{k}}" adjust-position="false" bindblur="confirm" bindfocus='focus' focus></input>
+                <view wx:if="{{!isShowDemo||i!=pageIndex||j!=0||k!=0}}" class="weui-cell__bd {{todo.isDone ? 'gray' : ''}}" bindlongpress='onDel' data-delValue='{{i}};{{j}};{{k}}'>{{todo.content}}</view>
               </label>
             </checkbox-group>
           </view>
@@ -35,4 +32,19 @@
       </scroll-view>
     </swiper-item>
   </block>
+  <swiper-item>
+
+    <view class="page__bd page__bd_spacing marginTop2" wx:if="{{!isTap}}">
+      <view class="weui-footer">
+        <view class="weui-footer__text">「点击」加号新建分组</view>
+        <view class='chaoda' bindtap='tapjiahao'>+</view>
+      </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing marginTop2" wx:if="{{isTap}}">
+      <label class="weui-cell weui-check__label weui-footer-new borderButtom">
+        <input class="weui-cell__bd" placeholder="点击新建分组" bindconfirm="confirGroup" bindblur="blurXinjian" value='{{newGroupInput}}' focus></input>
+      </label>
+    </view>
+  </swiper-item>
 </swiper>

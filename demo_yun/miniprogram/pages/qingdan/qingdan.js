@@ -10,18 +10,38 @@ Page({
     isTop: false,
     isY: true,
     upper: -50,
+    isfocus: false,
 
     todolist: null,
 
-    pageIndex: 0
+    pageIndex: 0,
+
+    newGroupInput: "",
+
+    isTap:false
 
   },
   //切换分组
   swiperChange: function (e) {
     console.log("swiperChange:", e);
+
     this.setData({
       pageIndex: e.detail.current
     })
+
+    var todolist = this.data.todolist;
+    var group = todolist[this.data.pageIndex];
+    if (group) {
+      var title = todolist[this.data.pageIndex].gName;
+      wx.setNavigationBarTitle({
+        title: title
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: "新建分组"
+      })
+    }
+
   },
 
   //时间戳转日期
@@ -36,12 +56,12 @@ Page({
 
   //改变状态
   checkboxChange: function (e) {
-    console.log("checkbox:",e.detail.value)
+    // console.log("checkbox:", e.detail.value)
     var arr = e.currentTarget.dataset.grouptgroup.split(";");
 
     var values = e.detail.value;
     var todolist = this.data.todolist;
-    var items = todolist[arr[0]][arr[1]].todoList;
+    var items = todolist[arr[0]].gtList[arr[1]].todoList;
 
     for (var i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].isDone = false;
@@ -76,61 +96,48 @@ Page({
         var now = Date.now()
         var time = this.timeToData(Date.now())
         var todolist = [
-          [
-            {
-              title: "10-25",
+          {
+            gName: "日常",
+            time: now,
+            index: 10000 - this.data.pageIndex,
+            gtList: [{
+              title: "说明",
               time: now,
-              todoList: [
-                {
-                  "id": now + 1,
-                  "time": now + 1,
-                  "content": "下划创建 清单",
-                  "isDone": false
-                },
-                {
-                  "id": now,
-                  "time": now,
-                  "content": "长按删除 清单",
-                  "isDone": false
-                },
-                {
-                  "id": now - 1,
-                  "time": now - 1,
-                  "content": "右划创建 分组",
-                  "isDone": false
-                }
+              todoList: [{
+                "id": now,
+                "time": now,
+                "content": "「下拉」创建清单",
+                "isDone": false
+              },
+              {
+                "id": now - 1,
+                "time": now - 1,
+                "content": "「长按」删除清单",
+                "isDone": false
+              },
+              {
+                "id": now - 2,
+                "time": now - 2,
+                "content": "「右划」创建分组",
+                "isDone": false
+              }
               ]
-            },
-            {
-              title: "10-24",
-              time: now - 1,
-              todoList: [
-                {
-                  "id": now + 1,
-                  "time": now + 1,
-                  "content": "下划创建 清单",
-                  "isDone": false
-                },
-                {
-                  "id": now,
-                  "time": now,
-                  "content": "长按删除 清单",
-                  "isDone": false
-                },
-                {
-                  "id": now - 1,
-                  "time": now - 1,
-                  "content": "右划创建 分组",
-                  "isDone": false
-                }
-              ]
-            }
-          ]
+            }]
+          }
         ]
 
         this.setData({
           todolist: todolist
         })
+
+        var todolist = this.data.todolist;
+        var group = todolist[this.data.pageIndex];
+        if (group) {
+          var title = todolist[this.data.pageIndex].gName;
+          wx.setNavigationBarTitle({
+            title: title
+          })
+        }
 
         try {
           wx.setStorageSync('ToDoList', this.data.todolist)
@@ -143,12 +150,13 @@ Page({
 
   onLoad: function (options) {
 
-    try {
-      wx.clearStorageSync()
-    } catch (e) {
-      // Do something when catch error
-    }
+    // try {
+    //   wx.clearStorageSync()
+    // } catch (e) {
+    //   // Do something when catch error
+    // }
     this.getToDoList();
+
   },
 
   onTop: function (e) {
@@ -158,21 +166,24 @@ Page({
     });
   },
   touchStart: function (e) {
-    console.log("toucheStart", e);
+    // console.log("toucheStart", e);
+    if (this.data.isfocus) { return }
 
     this.setData({
       isTop: false
     });
   },
   touchEnd: function (e) {
-    console.log("toucheEnd", e);
+    // console.log("toucheEnd", e, this.data.isTop);
+    if (this.data.isfocus) { return }
+
     if (this.data.isTop) {
 
       var time = this.timeToData(Date.now());
       var todolist = this.data.todolist;
-      var groupList = todolist[this.data.pageIndex];
+      var groupList = todolist[this.data.pageIndex].gtList;
 
-      if (!this.isSameDay(Date.now(), groupList[0].title)) {
+      if (groupList.length == 0 || !this.isSameDay(Date.now(), groupList[0].title)) {
         var group = {
           title: time,
           time: Date.now(),
@@ -213,24 +224,36 @@ Page({
 
     }
   },
+  //输入框调起
+  focus: function (e) {
+    // console.log("bindfocus", e)
+    this.setData({
+      isfocus: true
+    })
+  },
+
   //提交todo
   confirm: function (e) {
-    console.log("confirm:", e);
+    // console.log("confirm:", e);
     var time = Date.now();
     var value = e.detail.value;
 
-    if(value==""){
+    this.setData({
+      isfocus: false
+    })
+
+    if (value == "") {
       this.inputBlur(e)
       return
     }
 
     var arr = e.currentTarget.dataset.grouptgroup.split(";");
     var todolist = this.data.todolist;
-    var firstTitle = todolist[arr[0]][arr[1]].title;
+    var firstTitle = todolist[arr[0]].gtList[arr[1]].title;
 
     if (this.isSameDay(time, firstTitle)) {
 
-      todolist[arr[0]][arr[1]].todoList[arr[2]].content = value
+      todolist[arr[0]].gtList[arr[1]].todoList[arr[2]].content = value
 
       this.setData({
         todolist: todolist,
@@ -251,28 +274,130 @@ Page({
   inputBlur: function (e) {
     console.log("Blur:", e)
 
-    var time = this.timeToData(Date.now());
-    var todolist = this.data.todolist;
-    var groupList = todolist[this.data.pageIndex];
-
-    var item = groupList[0];
-    if (item != null) {
-      if (item.todoList.length == 1){
-        groupList.splice(0,1)  
-      }else{
-        item.todoList.splice(0,1)
-      } 
-
-      this.setData({
-        todolist: todolist,
-      })    
-    }
-
     this.setData({
       isShowDemo: false,
       isY: true,
       upper: -50
     });
+
+    var time = this.timeToData(Date.now());
+    var todolist = this.data.todolist;
+    var groupList = todolist[this.data.pageIndex].gtList;
+
+    var item = groupList[0];
+    if (item != null) {
+      if (item.todoList.length == 1) {
+        groupList.splice(0, 1)
+      } else {
+        item.todoList.splice(0, 1)
+      }
+
+      this.setData({
+        todolist: todolist,
+      })
+    }
+  },
+
+  onDel: function (e) {
+    console.log('onDel，携带value值为：', e);
+
+    var that = this;
+
+    var arr=e.currentTarget.dataset.delvalue.split(";");
+
+
+    wx.showActionSheet({
+      itemList: ['删除'],
+      itemColor: "#e64340",
+      success: function (res) {
+        if (!res.cancel && res.tapIndex==0) {
+          // console.log(res.tapIndex)
+          that.delTodo(arr);
+        }
+      },
+      fail: function (res) {
+        console.log("fail",res)
+      },
+      complete: function (res) {
+        console.log("cancle",res)
+      }
+    });
+  },
+
+  delTodo:function(e){
+    if(e){
+      var todolist=this.data.todolist;
+      if (todolist[e[0]] && todolist[e[0]].gtList[e[1]] && todolist[e[0]].gtList[e[1]].todoList[e[2]]){
+        if (todolist[e[0]].gtList[e[1]].todoList.length>1){
+          todolist[e[0]].gtList[e[1]].todoList.splice(e[2], 1)
+        }else{
+          todolist[e[0]].gtList.splice(e[1],1)
+        }
+      }
+
+      this.setData({
+        todolist: todolist
+      })
+
+      try {
+        wx.setStorageSync('ToDoList', this.data.todolist)
+      } catch (e) { }
+    }
+  },
+
+  confirGroup: function (e) {
+    console.log("新建分组", e);
+    var now = Date.now();
+    var value = e.detail.value;
+
+    if (value == "") {
+      return
+    } else {
+      var todolist = this.data.todolist;
+      var group = {
+        gName: value,
+        time: now,
+        index: 10000 - this.data.pageIndex,
+        gtList: []
+      }
+
+      todolist.push(group);
+
+      this.setData({
+        todolist: todolist,
+        newGroupInput: ""
+      })
+
+      try {
+        wx.setStorageSync('ToDoList', this.data.todolist)
+      } catch (e) { }
+
+      var todolist = this.data.todolist;
+      var group = todolist[this.data.pageIndex];
+      if (group) {
+        var title = todolist[this.data.pageIndex].gName;
+        wx.setNavigationBarTitle({
+          title: title
+        })
+      } else {
+        wx.setNavigationBarTitle({
+          title: "新建分组"
+        })
+      }
+
+      console.log("todolist", this.data.todolist)
+    }
+  },
+
+  tapjiahao:function(e){
+    this.setData({
+      isTap:true
+    })
+  },
+  blurXinjian:function(e){
+    this.setData({
+      isTap: false
+    })
   },
 
   /**

@@ -715,6 +715,10 @@ icon {
   font-size: 14px;
   text-align: center;
 }
+.weui-footer-new {
+  color: #999;
+  text-align: center;
+}
 
 .weui-footer_fixed-bottom {
   position: fixed;

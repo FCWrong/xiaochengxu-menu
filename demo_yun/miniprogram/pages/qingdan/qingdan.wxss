@@ -18,3 +18,29 @@ page{
   z-index: 4;
   /* background-color: #f8f8f8 */
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.gray{
+  color: #999;
+  text-decoration:line-through
+}
+.marginTop{
+  margin-top: 38.2%;
+}
+
+.marginTop2{
+  margin-top: 15%;
+}
+.borderButtom{
+  /* border-style:solid; */
+  /* border-bottom: solid #999; */
+  border-bottom-style:solid;
+  border-bottom-color: #999;
+  border-bottom-width: 1rpx;
+}
+.chaoda{
+  font-size: 5em
+}

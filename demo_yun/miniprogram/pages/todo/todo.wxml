@@ -22,7 +22,7 @@
                     <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
                     <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
                   </view>
-                  <view class="weui-cell__bd" bindlongpress='onDel'>{{item.name}}</view>
+                  <view class="weui-cell__bd " bindlongpress='onDel' >{{item.name}}</view>
                 </label>
               </checkbox-group>
               <view class="weui-cell weui-cell_link">
