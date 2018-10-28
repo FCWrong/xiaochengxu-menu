@@ -15,6 +15,7 @@ Page({
     todolist: null,
 
     pageIndex: 0,
+    curIndex:1,
 
     newGroupInput: "",
 
@@ -26,7 +27,7 @@ Page({
     // console.log("swiperChange:", e);
 
     this.setData({
-      pageIndex: e.detail.current
+      pageIndex: e.detail.current-1
     })
 
     var todolist = this.data.todolist;
@@ -38,7 +39,7 @@ Page({
       })
     } else {
       wx.setNavigationBarTitle({
-        title: "新建分组"
+        title: "分组"
       })
     }
 
@@ -99,7 +100,7 @@ Page({
           {
             gName: "日常",
             time: now,
-            index: 10000 - this.data.pageIndex,
+            index: now,
             gtList: [{
               title: "说明",
               time: now,
@@ -136,19 +137,22 @@ Page({
           todolist: todolist
         })
 
-        var todolist = this.data.todolist;
-        var group = todolist[this.data.pageIndex];
-        if (group) {
-          var title = todolist[this.data.pageIndex].gName;
-          wx.setNavigationBarTitle({
-            title: title
-          })
-        }
-
         try {
           wx.setStorageSync('ToDoList', this.data.todolist)
         } catch (e) { }
       }
+
+      var todolist = this.data.todolist;
+
+      var group = todolist[this.data.pageIndex];
+      // console.log("this index:", this.data.pageIndex, group)
+      if (group) {
+        var title = todolist[this.data.pageIndex].gName;
+        wx.setNavigationBarTitle({
+          title: title
+        })
+      }
+
     } catch (e) {
       console.log("Error-getGroupList:", e)
     }
@@ -166,7 +170,7 @@ Page({
   },
 
   onTop: function (e) {
-    // console.log("OnTop:", e)
+    console.log("OnTop:", e)
     this.setData({
       isTop: true,
     });
@@ -351,6 +355,57 @@ Page({
     }
   },
 
+  onDelZu: function (e) {
+    console.log('onDel，携带value值为：', e);
+    var that = this;
+    var value = e.currentTarget.dataset.delvalue;
+    wx.showActionSheet({
+      itemList: ['删除分组'],
+      itemColor: "#e64340",
+      success: function (res) {
+        if (!res.cancel && res.tapIndex == 0) {
+          // console.log(res.tapIndex)
+          that.delZu(value);
+        }
+      },
+      fail: function (res) {
+        // console.log("fail",res)
+      },
+      complete: function (res) {
+        // console.log("cancle",res)
+      }
+    });
+  },
+
+  delZu: function (e) {
+    
+    console.log("e",e)
+    if (e!=null) {
+      if(e!=0){
+        var todolist = this.data.todolist;
+        console.log("e1", todolist[e])
+        if (todolist[e]) {
+          console.log("e", todolist[e])
+          todolist.splice(e, 1)
+        }
+
+        this.setData({
+          todolist: todolist
+        })
+
+        try {
+          wx.setStorageSync('ToDoList', this.data.todolist)
+        } catch (e) { }
+      }else{
+        wx.showToast({
+          title: '「日常」无法被删除',
+          icon:"none",
+
+        })
+      }
+    }
+  },
+
   confirGroup: function (e) {
     // console.log("新建分组", e);
     var now = Date.now();
@@ -363,7 +418,7 @@ Page({
       var group = {
         gName: value,
         time: now,
-        index: 10000 - this.data.pageIndex,
+        index: now,
         gtList: []
       }
 
@@ -371,6 +426,8 @@ Page({
 
       this.setData({
         todolist: todolist,
+        curIndex:todolist.length,
+        pageIndex: todolist.length-1,
         newGroupInput: ""
       })
 
@@ -387,11 +444,22 @@ Page({
         })
       } else {
         wx.setNavigationBarTitle({
-          title: "新建分组"
+          title: "分组"
         })
       }
 
       // console.log("todolist", this.data.todolist)
+    }
+  },
+  //页面跳转
+  goto:function(e){
+    // console.log("goto",e)
+    var value=e.currentTarget.dataset.delvalue
+    if(value!=null){ 
+      this.setData({
+        curIndex: value+1,
+        pageIndex: value,
+      })
     }
   },
 

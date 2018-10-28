@@ -1,11 +1,45 @@
-<swiper class='swiper-view' duration="200" bindchange="swiperChange">
+<swiper class='swiper-view' duration="200" current="{{curIndex}}" circular bindchange="swiperChange">
+
+  <swiper-item>
+    <scroll-view scroll-y class='scrollView'>
+      <view class="page__bd page__bd_spacing marginTop2" wx:if="{{!isTap}}">
+        <view class="weui-footer">
+          <view class="weui-footer__text">「点击」加号新建分组</view>
+          <view class='chaoda' bindtap='tapjiahao'>+</view>
+        </view>
+      </view>
+
+      <view class="page__bd page__bd_spacing marginTop2" wx:if="{{isTap}}">
+        <label class="weui-cell weui-check__label weui-footer-new borderButtom">
+          <input class="weui-cell__bd" placeholder="新建分组" bindconfirm="confirGroup" bindblur="blurXinjian" value='{{newGroupInput}}' focus></input>
+        </label>
+      </view>
+
+      <view wx:if="{{!isTap}}">
+        <view class="weui-loadmore weui-loadmore_line">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">所有分组</view>
+        </view>
+        <label class="weui-cell-qingdan weui-check__label" bindlongpress='onDelZu' bindtap='goto' data-delValue='{{n}}' wx:for="{{todolist}}" wx:for-item="zu" wx:key="index" wx:for-index="n">
+          <view class="weui-cell__bd link">{{zu.gName}}</view>
+          <!-- <view class="weui-cell__ft">20/30</view> -->
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </label>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
   <block wx:for="{{todolist}}" wx:for-item="group" wx:key="index" wx:for-index="i">
     <swiper-item>
+
+      <!-- <view class="weui-footer">
+          <view class="weui-footer__text">「下拉」新建</view>
+        </view> -->
+
       <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}">
 
         <view class="page__bd page__bd_spacing marginTop2" wx:if="{{todolist[i].gtList.length==0}}">
           <view class="weui-footer">
-            <view class="weui-footer__text">您还没有待办清单，「下拉」创建第一个待办清单</view>
+            <view class="weui-footer__text">您还没有待办事项，「下拉」创建第一个待办事项</view>
           </view>
         </view>
 
@@ -32,19 +66,5 @@
       </scroll-view>
     </swiper-item>
   </block>
-  <swiper-item>
 
-    <view class="page__bd page__bd_spacing marginTop2" wx:if="{{!isTap}}">
-      <view class="weui-footer">
-        <view class="weui-footer__text">「点击」加号新建分组</view>
-        <view class='chaoda' bindtap='tapjiahao'>+</view>
-      </view>
-    </view>
-
-    <view class="page__bd page__bd_spacing marginTop2" wx:if="{{isTap}}">
-      <label class="weui-cell weui-check__label weui-footer-new borderButtom">
-        <input class="weui-cell__bd" placeholder="新建分组" bindconfirm="confirGroup" bindblur="blurXinjian" value='{{newGroupInput}}' focus></input>
-      </label>
-    </view>
-  </swiper-item>
 </swiper>

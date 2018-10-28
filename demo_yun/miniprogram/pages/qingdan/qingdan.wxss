@@ -10,8 +10,15 @@ page{
 .scrollView{
   width: 100%;
   height: 100%;
-}
+  
+  /* height: calc(100% + 40px);
+  transform: translateY(-40px); */
 
+  /* z-index:6 */
+}
+.link{
+  color: #586c94
+}
 .top{
   position: fixed;
   top: 0;
@@ -42,5 +49,13 @@ page{
   border-bottom-width: 1rpx;
 }
 .chaoda{
-  font-size: 5em
+  font-size: 5em;
+  color: #000;
+}
+.xiala{
+  -webkit-transform: translateY(-50px);
+  transform: translateY(-50px);
+   -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  /* z-index:5 */
 }
