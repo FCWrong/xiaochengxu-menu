@@ -18,12 +18,12 @@ Page({
 
     newGroupInput: "",
 
-    isTap:false
+    isTap: false
 
   },
   //切换分组
   swiperChange: function (e) {
-    console.log("swiperChange:", e);
+    // console.log("swiperChange:", e);
 
     this.setData({
       pageIndex: e.detail.current
@@ -88,13 +88,13 @@ Page({
       var key = "ToDoList"
       var value = wx.getStorageSync(key)
       if (value) {
-        console.log("getGroupList:", value)
+        // console.log("getGroupList:", value)
         this.setData({
           todolist: value
         })
       } else {
         var now = Date.now()
-        var time = this.timeToData(Date.now())
+        // var time = this.timeToData(Date.now())
         var todolist = [
           {
             gName: "日常",
@@ -103,24 +103,30 @@ Page({
             gtList: [{
               title: "说明",
               time: now,
-              todoList: [{
-                "id": now,
-                "time": now,
-                "content": "「下拉」创建清单",
-                "isDone": false
-              },
-              {
-                "id": now - 1,
-                "time": now - 1,
-                "content": "「长按」删除清单",
-                "isDone": false
-              },
-              {
-                "id": now - 2,
-                "time": now - 2,
-                "content": "「右划」创建分组",
-                "isDone": false
-              }
+              todoList: [
+                {
+                  "id": now,
+                  "time": now,
+                  "content": "「点击」完成清单",
+                  "isDone": false
+                }, {
+                  "id": now-1,
+                  "time": now-1,
+                  "content": "「下拉」创建清单",
+                  "isDone": false
+                },
+                {
+                  "id": now - 2,
+                  "time": now - 2,
+                  "content": "「长按」删除清单",
+                  "isDone": false
+                },
+                {
+                  "id": now - 3,
+                  "time": now - 3,
+                  "content": "「右划」创建分组",
+                  "isDone": false
+                }
               ]
             }]
           }
@@ -160,7 +166,7 @@ Page({
   },
 
   onTop: function (e) {
-    console.log("OnTop:", e)
+    // console.log("OnTop:", e)
     this.setData({
       isTop: true,
     });
@@ -272,7 +278,7 @@ Page({
 
   },
   inputBlur: function (e) {
-    console.log("Blur:", e)
+    // console.log("Blur:", e)
 
     this.setData({
       isShowDemo: false,
@@ -299,39 +305,39 @@ Page({
   },
 
   onDel: function (e) {
-    console.log('onDel，携带value值为：', e);
+    // console.log('onDel，携带value值为：', e);
 
     var that = this;
 
-    var arr=e.currentTarget.dataset.delvalue.split(";");
+    var arr = e.currentTarget.dataset.delvalue.split(";");
 
 
     wx.showActionSheet({
       itemList: ['删除'],
       itemColor: "#e64340",
       success: function (res) {
-        if (!res.cancel && res.tapIndex==0) {
+        if (!res.cancel && res.tapIndex == 0) {
           // console.log(res.tapIndex)
           that.delTodo(arr);
         }
       },
       fail: function (res) {
-        console.log("fail",res)
+        // console.log("fail",res)
       },
       complete: function (res) {
-        console.log("cancle",res)
+        // console.log("cancle",res)
       }
     });
   },
 
-  delTodo:function(e){
-    if(e){
-      var todolist=this.data.todolist;
-      if (todolist[e[0]] && todolist[e[0]].gtList[e[1]] && todolist[e[0]].gtList[e[1]].todoList[e[2]]){
-        if (todolist[e[0]].gtList[e[1]].todoList.length>1){
+  delTodo: function (e) {
+    if (e) {
+      var todolist = this.data.todolist;
+      if (todolist[e[0]] && todolist[e[0]].gtList[e[1]] && todolist[e[0]].gtList[e[1]].todoList[e[2]]) {
+        if (todolist[e[0]].gtList[e[1]].todoList.length > 1) {
           todolist[e[0]].gtList[e[1]].todoList.splice(e[2], 1)
-        }else{
-          todolist[e[0]].gtList.splice(e[1],1)
+        } else {
+          todolist[e[0]].gtList.splice(e[1], 1)
         }
       }
 
@@ -346,7 +352,7 @@ Page({
   },
 
   confirGroup: function (e) {
-    console.log("新建分组", e);
+    // console.log("新建分组", e);
     var now = Date.now();
     var value = e.detail.value;
 
@@ -385,16 +391,16 @@ Page({
         })
       }
 
-      console.log("todolist", this.data.todolist)
+      // console.log("todolist", this.data.todolist)
     }
   },
 
-  tapjiahao:function(e){
+  tapjiahao: function (e) {
     this.setData({
-      isTap:true
+      isTap: true
     })
   },
-  blurXinjian:function(e){
+  blurXinjian: function (e) {
     this.setData({
       isTap: false
     })

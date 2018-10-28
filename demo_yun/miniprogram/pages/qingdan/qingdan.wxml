@@ -43,7 +43,7 @@
 
     <view class="page__bd page__bd_spacing marginTop2" wx:if="{{isTap}}">
       <label class="weui-cell weui-check__label weui-footer-new borderButtom">
-        <input class="weui-cell__bd" placeholder="点击新建分组" bindconfirm="confirGroup" bindblur="blurXinjian" value='{{newGroupInput}}' focus></input>
+        <input class="weui-cell__bd" placeholder="新建分组" bindconfirm="confirGroup" bindblur="blurXinjian" value='{{newGroupInput}}' focus></input>
       </label>
     </view>
   </swiper-item>
