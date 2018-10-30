@@ -168,16 +168,17 @@ Page({
     //   // Do something when catch error
     // }
     this.getToDoList();
-    this.setHight()
+    // this.setHight()
 
   },
-
+  //下拉
   onTop: function (e) {
-    // console.log("OnTop:", e)
+    console.log("OnTop:", e)
     this.setData({
       isTop: true,
     });
   },
+  //开始触摸
   touchStart: function (e) {
     console.log("toucheStart", e);
     if (this.data.isfocus) { return }
@@ -186,6 +187,7 @@ Page({
       isTop: false
     });
   },
+  //结束触摸
   touchEnd: function (e) {
     console.log("toucheEnd", e, this.data.isTop);
     if (this.data.isfocus) { return }
@@ -239,7 +241,7 @@ Page({
 
     }
   },
-
+  //添加新任务
   addNewRenwu:function(){
     this.onTop(0);
     this.touchEnd(0)
@@ -291,6 +293,7 @@ Page({
     })
 
   },
+  //取消输入
   inputBlur: function (e) {
     // console.log("Blur:", e)
 
@@ -317,7 +320,7 @@ Page({
       })
     }
   },
-
+  //删除
   onDel: function (e) {
     // console.log('onDel，携带value值为：', e);
 
@@ -343,7 +346,7 @@ Page({
       }
     });
   },
-
+  //删除todo
   delTodo: function (e) {
     if (e) {
       var todolist = this.data.todolist;
@@ -364,7 +367,7 @@ Page({
       } catch (e) { }
     }
   },
-
+  //删除清单
   onDelZu: function (e) {
     console.log('onDel，携带value值为：', e);
     var that = this;
@@ -386,7 +389,7 @@ Page({
       }
     });
   },
-
+  //删除清单
   delZu: function (e) {
     
     console.log("e",e)
@@ -415,7 +418,7 @@ Page({
       }
     }
   },
-
+  //新建清单
   confirGroup: function (e) {
     // console.log("新建分组", e);
     var now = Date.now();
@@ -454,7 +457,7 @@ Page({
         })
       } else {
         wx.setNavigationBarTitle({
-          title: "分组"
+          title: "清单"
         })
       }
 
@@ -472,12 +475,13 @@ Page({
       })
     }
   },
-
+  //点击加号清单
   tapjiahao: function (e) {
     this.setData({
       isTap: true
     })
   },
+  //取消新建清单
   blurXinjian: function (e) {
     this.setData({
       isTap: false
@@ -521,26 +525,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log("OnTop:")
-    wx.stopPullDownRefresh();
-    this.setData({
-      isTop: true,
-    });
+    // console.log("OnTop:")
+    // wx.stopPullDownRefresh();
+    // this.setData({
+    //   isTop: true,
+    // });
 
-    this.touchEnd(2)
+    // this.touchEnd(2)
   },
-  //动态设置swiper 高度
-  setHight:function(){
-    var that=this
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          height:res.screenHeight-64
-        });
-      }
-    });
-  },
+
 
   /**
    * 页面上拉触底事件的处理函数

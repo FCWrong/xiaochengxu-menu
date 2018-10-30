@@ -873,13 +873,17 @@ icon {
 }
 
 .weui-loadmore_line {
-  border-top: 1px solid #e5e5e5;
-  margin-top: 2em;
+  /* border-top: 1px solid #e5e5e5;
+  margin-top: 2em; */
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 1.6em;
+  margin-top: 0.1em;
+  /* padding-top: 2em; */
 }
 
 .weui-loadmore__tips_in-line {
   position: relative;
-  top: -.9em;
+  top: .8em;
   padding: 0 0.55em;
   background-color: #f8f8f8;
   color: #999;
