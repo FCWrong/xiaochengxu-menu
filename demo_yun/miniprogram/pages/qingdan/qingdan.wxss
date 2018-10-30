@@ -57,9 +57,11 @@ page{
 .borderButtom{
   /* border-style:solid; */
   /* border-bottom: solid #999; */
-  border-bottom-style:solid;
+  /* border-bottom-style:solid;
   border-bottom-color: #999;
-  border-bottom-width: 1rpx;
+  border-bottom-width: 1rpx; */
+
+  border-bottom: 1px solid #e5e5e5;
 }
 .chaoda{
   font-size: 5em;

@@ -6,6 +6,8 @@ Page({
    */
   data: {
 
+    isIOS: true,
+
     isShowDemo: false,
     isTop: false,
     isY: true,
@@ -15,13 +17,13 @@ Page({
     todolist: null,
 
     pageIndex: 0,
-    curIndex:1,
+    curIndex: 1,
 
     newGroupInput: "",
 
     isTap: false,
 
-    height:0
+    height: 0
 
   },
   //切换分组
@@ -29,7 +31,7 @@ Page({
     // console.log("swiperChange:", e);
 
     this.setData({
-      pageIndex: e.detail.current-1
+      pageIndex: e.detail.current - 1
     })
 
     var todolist = this.data.todolist;
@@ -90,6 +92,7 @@ Page({
     try {
       var key = "ToDoList"
       var value = wx.getStorageSync(key)
+      var todolist;
       if (value) {
         // console.log("getGroupList:", value)
         this.setData({
@@ -98,42 +101,82 @@ Page({
       } else {
         var now = Date.now()
         // var time = this.timeToData(Date.now())
-        var todolist = [
-          {
-            gName: "日常",
-            time: now,
-            index: now,
-            gtList: [{
-              title: "说明",
+        if (this.data.isIOS) {
+          todolist = [
+            {
+              gName: "日常",
               time: now,
-              todoList: [
-                {
-                  "id": now,
-                  "time": now,
-                  "content": "「点击」完成任务",
-                  "isDone": false
-                }, {
-                  "id": now-1,
-                  "time": now-1,
-                  "content": "「下拉」创建任务",
-                  "isDone": false
-                },
-                {
-                  "id": now - 2,
-                  "time": now - 2,
-                  "content": "「长按」删除任务",
-                  "isDone": false
-                },
-                {
-                  "id": now - 3,
-                  "time": now - 3,
-                  "content": "「右划」创建清单",
-                  "isDone": false
-                }
-              ]
-            }]
-          }
-        ]
+              index: now,
+              gtList: [{
+                title: "说明",
+                time: now,
+                todoList: [
+                  {
+                    "id": now,
+                    "time": now,
+                    "content": "「点击」完成任务",
+                    "isDone": false
+                  }, {
+                    "id": now - 1,
+                    "time": now - 1,
+                    "content": "「下拉」添加任务",
+                    "isDone": false
+                  },
+                  {
+                    "id": now - 2,
+                    "time": now - 2,
+                    "content": "「长按」删除任务",
+                    "isDone": false
+                  },
+                  {
+                    "id": now - 3,
+                    "time": now - 3,
+                    "content": "「右划」创建清单",
+                    "isDone": false
+                  }
+                ]
+              }]
+            }
+          ]
+        } else {
+          todolist = [
+            {
+              gName: "日常",
+              time: now,
+              index: now,
+              gtList: [{
+                title: "说明",
+                time: now,
+                todoList: [
+                  {
+                    "id": now,
+                    "time": now,
+                    "content": "「点击」完成任务",
+                    "isDone": false
+                  }, {
+                    "id": now - 1,
+                    "time": now - 1,
+                    "content": "「加号」添加任务",
+                    "isDone": false
+                  },
+                  {
+                    "id": now - 2,
+                    "time": now - 2,
+                    "content": "「长按」删除任务",
+                    "isDone": false
+                  },
+                  {
+                    "id": now - 3,
+                    "time": now - 3,
+                    "content": "「右划」创建清单",
+                    "isDone": false
+                  }
+                ]
+              }]
+            }
+          ]
+        }
+
 
         this.setData({
           todolist: todolist
@@ -167,6 +210,7 @@ Page({
     // } catch (e) {
     //   // Do something when catch error
     // }
+    this.isIOS();
     this.getToDoList();
     // this.setHight()
 
@@ -237,12 +281,12 @@ Page({
         upper: -5000
       })
 
-      
+
 
     }
   },
   //添加新任务
-  addNewRenwu:function(){
+  addNewRenwu: function () {
     this.onTop(0);
     this.touchEnd(0)
   },
@@ -391,10 +435,10 @@ Page({
   },
   //删除清单
   delZu: function (e) {
-    
-    console.log("e",e)
-    if (e!=null) {
-      if(e!=0){
+
+    console.log("e", e)
+    if (e != null) {
+      if (e != 0) {
         var todolist = this.data.todolist;
         console.log("e1", todolist[e])
         if (todolist[e]) {
@@ -409,10 +453,10 @@ Page({
         try {
           wx.setStorageSync('ToDoList', this.data.todolist)
         } catch (e) { }
-      }else{
+      } else {
         wx.showToast({
           title: '「日常」无法被删除',
-          icon:"none",
+          icon: "none",
 
         })
       }
@@ -439,8 +483,8 @@ Page({
 
       this.setData({
         todolist: todolist,
-        curIndex:todolist.length,
-        pageIndex: todolist.length-1,
+        curIndex: todolist.length,
+        pageIndex: todolist.length - 1,
         newGroupInput: ""
       })
 
@@ -465,12 +509,12 @@ Page({
     }
   },
   //页面跳转
-  goto:function(e){
+  goto: function (e) {
     // console.log("goto",e)
-    var value=e.currentTarget.dataset.delvalue
-    if(value!=null){ 
+    var value = e.currentTarget.dataset.delvalue
+    if (value != null) {
       this.setData({
-        curIndex: value+1,
+        curIndex: value + 1,
         pageIndex: value,
       })
     }
@@ -519,6 +563,26 @@ Page({
    */
   onUnload: function () {
 
+  },
+
+  isIOS: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        var isIOS
+        if (res.platform == "devtools") {
+          isIOS = false;
+        } else if (res.platform == "ios") {
+          isIOS = true;
+        } else if (res.platform == "android") {
+          isIOS = false;
+        }
+
+        that.setData({
+          isIOS: isIOS
+        })
+      }
+    })
   },
 
   /**

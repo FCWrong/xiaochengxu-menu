@@ -31,15 +31,11 @@
   <block wx:for="{{todolist}}" wx:for-item="group" wx:key="index" wx:for-index="i">
     <swiper-item>
 
-      <!-- <view class="weui-footer">
-          <view class="weui-footer__text">「下拉」新建</view>
-        </view> -->
-
       <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}">
         <!-- <view class='scrollView' bindtouchstart="{{isfocus?'':'touchStart'}}" > -->
         <view class="page__bd page__bd_spacing marginTop2" wx:if="{{todolist[i].gtList.length==0}}">
           <view class="weui-footer">
-            <view class="weui-footer__text">您还没有任务，「下拉」创建第一条任务</view>
+            <view class="weui-footer__text">{{isIOS?"您还没有任务，「下拉」创建第一条任务":"您还没有任务，点击「加号」创建第一条任务"}}</view>
           </view>
         </view>
 
@@ -62,14 +58,14 @@
             </checkbox-group>
           </view>
         </block>
-        <view class='buttomKongbai'></view>
+        <view wx:if="{{!isIOS}}" class='buttomKongbai'></view>
       </scroll-view>
 
     </swiper-item>
   </block>
 
 </swiper>
-<view class="weui-cells weui-cells_after-title buttom" bindtap='addNewRenwu'>
+<view wx:if="{{!isIOS&&pageIndex!=-1}}" class="weui-cells weui-cells_after-title buttom" bindtap='addNewRenwu'>
   <view class="weui-cell">
     <image src='../../images/add.png' class=" iconT">+</image>
     <view class="weui-cell__ft linkB">添加任务</view>
