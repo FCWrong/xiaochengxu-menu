@@ -10,6 +10,7 @@ page{
 .scrollView{
   width: 100%;
   height: 100%;
+  z-index: 1;
   
   /* height: calc(100% + 40px);
   transform: translateY(-40px); */
@@ -19,6 +20,16 @@ page{
 .link{
   color: #586c94
 }
+.linkB{
+  padding-left: 15px;
+  color: #586c94
+}
+
+.jiahaoButtom{
+  color: #586c94;
+  font-size: 1em;
+}
+
 .top{
   position: fixed;
   top: 0;
@@ -58,4 +69,14 @@ page{
    -webkit-transition: all 0.4s;
   transition: all 0.4s;
   /* z-index:5 */
+}
+.buttom{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+.iconT{
+  width: 30px;
+  height: 30px;
 }

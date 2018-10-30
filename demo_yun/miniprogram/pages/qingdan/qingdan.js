@@ -39,7 +39,7 @@ Page({
       })
     } else {
       wx.setNavigationBarTitle({
-        title: "分组"
+        title: "清单"
       })
     }
 
@@ -108,24 +108,24 @@ Page({
                 {
                   "id": now,
                   "time": now,
-                  "content": "「点击」完成清单",
+                  "content": "「点击」完成任务",
                   "isDone": false
                 }, {
                   "id": now-1,
                   "time": now-1,
-                  "content": "「下拉」创建清单",
+                  "content": "「下拉」创建任务",
                   "isDone": false
                 },
                 {
                   "id": now - 2,
                   "time": now - 2,
-                  "content": "「长按」删除清单",
+                  "content": "「长按」删除任务",
                   "isDone": false
                 },
                 {
                   "id": now - 3,
                   "time": now - 3,
-                  "content": "「右划」创建分组",
+                  "content": "「右划」创建清单",
                   "isDone": false
                 }
               ]
@@ -170,7 +170,7 @@ Page({
   },
 
   onTop: function (e) {
-    console.log("OnTop:", e)
+    // console.log("OnTop:", e)
     this.setData({
       isTop: true,
     });
@@ -233,6 +233,11 @@ Page({
       })
 
     }
+  },
+
+  addNewRenwu:function(){
+    this.onTop(0);
+    this.touchEnd(0)
   },
   //输入框调起
   focus: function (e) {
@@ -360,7 +365,7 @@ Page({
     var that = this;
     var value = e.currentTarget.dataset.delvalue;
     wx.showActionSheet({
-      itemList: ['删除分组'],
+      itemList: ['删除清单'],
       itemColor: "#e64340",
       success: function (res) {
         if (!res.cancel && res.tapIndex == 0) {

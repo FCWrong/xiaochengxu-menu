@@ -39,7 +39,7 @@
 
         <view class="page__bd page__bd_spacing marginTop2" wx:if="{{todolist[i].gtList.length==0}}">
           <view class="weui-footer">
-            <view class="weui-footer__text">您还没有待办事项，「下拉」创建第一个待办事项</view>
+            <view class="weui-footer__text">您还没有任务，「下拉」创建第一条任务</view>
           </view>
         </view>
 
@@ -64,6 +64,12 @@
         </block>
 
       </scroll-view>
+      <view class="weui-cells weui-cells_after-title buttom" bindtap='addNewRenwu'>
+            <view class="weui-cell">
+                <image src='../../images/add.png' class=" iconT">+</image>
+                <view class="weui-cell__ft linkB">添加任务</view>
+            </view>
+        </view>
     </swiper-item>
   </block>
 
