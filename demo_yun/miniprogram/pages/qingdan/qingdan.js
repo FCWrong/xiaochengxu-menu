@@ -23,7 +23,9 @@ Page({
 
     isTap: false,
 
-    height: 0
+    height: 0,
+
+    topNum:0
 
   },
   //切换分组
@@ -217,14 +219,14 @@ Page({
   },
   //下拉
   onTop: function (e) {
-    console.log("OnTop:", e)
+    // console.log("OnTop:", e)
     this.setData({
       isTop: true,
     });
   },
   //开始触摸
   touchStart: function (e) {
-    console.log("toucheStart", e);
+    // console.log("toucheStart", e);
     if (this.data.isfocus) { return }
 
     this.setData({
@@ -233,7 +235,7 @@ Page({
   },
   //结束触摸
   touchEnd: function (e) {
-    console.log("toucheEnd", e, this.data.isTop);
+    // console.log("toucheEnd", e, this.data.isTop);
     if (this.data.isfocus) { return }
 
     if (this.data.isTop) {
@@ -287,8 +289,15 @@ Page({
   },
   //添加新任务
   addNewRenwu: function () {
+    this.goTop(0);
     this.onTop(0);
     this.touchEnd(0)
+  },
+  //回到顶部
+  goTop: function (e) {  // 一键回到顶部
+    this.setData({
+      topNum: this.data.topNum = 0
+    });
   },
   //输入框调起
   focus: function (e) {
@@ -413,7 +422,7 @@ Page({
   },
   //删除清单
   onDelZu: function (e) {
-    console.log('onDel，携带value值为：', e);
+    // console.log('onDel，携带value值为：', e);
     var that = this;
     var value = e.currentTarget.dataset.delvalue;
     wx.showActionSheet({
@@ -436,13 +445,13 @@ Page({
   //删除清单
   delZu: function (e) {
 
-    console.log("e", e)
+    // console.log("e", e)
     if (e != null) {
       if (e != 0) {
         var todolist = this.data.todolist;
-        console.log("e1", todolist[e])
+        // console.log("e1", todolist[e])
         if (todolist[e]) {
-          console.log("e", todolist[e])
+          // console.log("e", todolist[e])
           todolist.splice(e, 1)
         }
 

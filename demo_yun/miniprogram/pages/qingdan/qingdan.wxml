@@ -31,7 +31,7 @@
   <block wx:for="{{todolist}}" wx:for-item="group" wx:key="index" wx:for-index="i">
     <swiper-item>
 
-      <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}">
+      <scroll-view scroll-y="{{isY}}" scroll-top='{{topNum}}' upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}">
         <!-- <view class='scrollView' bindtouchstart="{{isfocus?'':'touchStart'}}" > -->
         <view class="page__bd page__bd_spacing marginTop2" wx:if="{{todolist[i].gtList.length==0}}">
           <view class="weui-footer">
