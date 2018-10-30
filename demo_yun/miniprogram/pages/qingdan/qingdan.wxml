@@ -1,7 +1,7 @@
-<swiper class='swiper-view' duration="200" current="{{curIndex}}" circular bindchange="swiperChange">
+<swiper class='swiper-view' duration="200" current="{{curIndex}}" circular bindchange="swiperChange" style='height:{{height}}px'>
 
   <swiper-item>
-    <scroll-view scroll-y class='scrollView'>
+    <scroll-view scroll-y class='scrollView' >
       <view class="page__bd page__bd_spacing marginTop2" wx:if="{{!isTap}}">
         <view class="weui-footer">
           <view class="weui-footer__text">「点击」加号新建分组</view>
@@ -35,8 +35,8 @@
           <view class="weui-footer__text">「下拉」新建</view>
         </view> -->
 
-      <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}">
-
+      <!-- <scroll-view scroll-y="{{isY}}" upper-threshold="{{upper}}" class='scrollView' bindscrolltoupper="{{isfocus?'':'onTop'}}" bindtouchstart="{{isfocus?'':'touchStart'}}" bindtouchend="{{isfocus?'':'touchEnd'}}"> -->
+      <view class='scrollView' bindtouchstart="{{isfocus?'':'touchStart'}}" >
         <view class="page__bd page__bd_spacing marginTop2" wx:if="{{todolist[i].gtList.length==0}}">
           <view class="weui-footer">
             <view class="weui-footer__text">您还没有任务，「下拉」创建第一条任务</view>

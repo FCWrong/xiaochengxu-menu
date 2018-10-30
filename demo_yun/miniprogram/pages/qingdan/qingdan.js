@@ -19,7 +19,9 @@ Page({
 
     newGroupInput: "",
 
-    isTap: false
+    isTap: false,
+
+    height:0
 
   },
   //切换分组
@@ -166,6 +168,7 @@ Page({
     //   // Do something when catch error
     // }
     this.getToDoList();
+    this.setHight()
 
   },
 
@@ -176,7 +179,7 @@ Page({
     });
   },
   touchStart: function (e) {
-    // console.log("toucheStart", e);
+    console.log("toucheStart", e);
     if (this.data.isfocus) { return }
 
     this.setData({
@@ -184,7 +187,7 @@ Page({
     });
   },
   touchEnd: function (e) {
-    // console.log("toucheEnd", e, this.data.isTop);
+    console.log("toucheEnd", e, this.data.isTop);
     if (this.data.isfocus) { return }
 
     if (this.data.isTop) {
@@ -231,6 +234,8 @@ Page({
         isY: false,
         upper: -5000
       })
+
+      
 
     }
   },
@@ -516,7 +521,25 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log("OnTop:")
+    wx.stopPullDownRefresh();
+    this.setData({
+      isTop: true,
+    });
 
+    this.touchEnd(2)
+  },
+  //动态设置swiper 高度
+  setHight:function(){
+    var that=this
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          height:res.screenHeight-64
+        });
+      }
+    });
   },
 
   /**
