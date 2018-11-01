@@ -41,7 +41,7 @@
 
         <block wx:for="{{group.gtList}}" wx:for-item="tGroup" wx:key="time" wx:for-index="j">
           <view class="weui-loadmore weui-loadmore_line">
-            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{tGroup.title}}</view>
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{isShowTime||tGroup.title=='说明'?tGroup.title:""}}</view>
           </view>
           <view class="weui-cells-qingdan weui-cells_after-title">
             <checkbox-group bindchange="{{isfocus?'':'checkboxChange'}}" data-grouptgroup="{{i}};{{j}}">

@@ -25,8 +25,28 @@ Page({
 
     height: 0,
 
-    topNum:0
+    topNum:0,
 
+    isShowTime:false
+  },
+  getIsShowTime:function(){
+    var that=this
+    wx.cloud.callFunction({
+      name: "getIsShowTime",
+      success: res => {
+        console.log('[云函数] [addTodo] : ', res.result)
+        that.setData({
+          isShowTime: res.result
+        })
+        this.isIOS();
+        this.getToDoList();
+      },
+      fail: err => {
+        console.error('[云函数] [addTodo] 调用失败', err)
+        this.isIOS();
+        this.getToDoList();
+      }
+    })
   },
   //切换分组
   swiperChange: function (e) {
@@ -212,8 +232,8 @@ Page({
     // } catch (e) {
     //   // Do something when catch error
     // }
-    this.isIOS();
-    this.getToDoList();
+    this.getIsShowTime();
+    
     // this.setHight()
 
   },
